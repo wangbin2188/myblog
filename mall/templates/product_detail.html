@@ -1,0 +1,9 @@
+{% include "mall_head.html" %}
+
+
+<p>商品品牌：{{product_detail.brand}}</p>
+<p>商品名：{{product_detail.product_name}}</p>
+<p>价格：{{product_detail.product_price}}</p>
+<p>描述：{{product_detail.product_desc}}</p>
+<a href="{% url 'submit_order' product_items.id %}"><button type="submit" class="btn btn-danger">立即购买</button></a>
+<a href="{% url 'shop_cart_add' product_detail.id %}"><button type="submit" class="btn btn-success">加入购物车</button></a>

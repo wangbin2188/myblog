@@ -1,0 +1,48 @@
+
+var option = {
+    title: {
+        text: '柱状图',
+		left:'center',
+    },
+    legend: {
+        data: ['bar'],
+        x: 'left',
+    },
+    toolbox: {
+        // y: 'bottom',
+        feature: {
+            magicType: {
+                type: ['stack', 'tiled']
+            },
+            dataView: {},
+            saveAsImage: {
+                pixelRatio: 2
+            }
+        }
+    },
+	//浮层
+     tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        data: select_date,
+        silent: false,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {min:600000,
+    },
+    series: [{
+        name: 'bar',
+        type: 'bar',
+        data: app_active,
+        animationDelay: function (idx) {
+            return idx * 10;
+        }
+    }],
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};

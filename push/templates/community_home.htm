@@ -1,0 +1,120 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/community_home/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+{% for radio in form.target_format %}
+<div class="form-group">
+    {{ radio }}
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block index %}
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var data1 = {{bn1|safe}};
+		var data2 = {{bn2|safe}};
+		var data3 = {{bn3|safe}};
+		var data4 = {{bn4|safe}};
+		var data5 = {{bn5|safe}};
+		var data6 = {{bn6|safe}};
+		var data7 = {{bn7|safe}};
+		var data8 = {{bn8|safe}};
+		var data9 = {{bn9|safe}};	
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem9.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[3].type='line'
+option.series[4].type='line'
+option.series[5].type='line'
+option.series[6].type='line'
+option.series[7].type='line'
+option.series[8].type='line'
+
+option.series[0].name='bn1'
+option.series[1].name='bn2'
+option.series[2].name='bn3'
+option.series[3].name='bn4'
+option.series[4].name='bn5'
+option.series[5].name='bn6'
+option.series[6].name='bn7'
+option.series[7].name='bn8'
+option.series[8].name='bn9'
+option.legend.data=['bn1','bn2','bn3','bn4','bn5','bn6','bn7','bn8','bn9']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>bn1</th>
+		 <th>bn2</th>
+		 <th>bn3</th>
+		 <th>bn4</th>
+		 <th>bn5</th>
+		 <th>bn6</th>
+		 <th>bn7</th>
+		 <th>bn8</th>
+		 <th>bn9</th>
+      </tr>
+   </thead>
+{% endblock  %}
+ {% block tablebody %}  
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td> {{ item.date}} </td>
+         <td>{{ item.bn1 |floatformat:"0" }}</td>
+		 <td>{{ item.bn2 |floatformat:"0"}}</td>
+		 <td>{{ item.bn3 |floatformat:"0"}}</td>
+		 <td>{{ item.bn4 |floatformat:"0"}}</td>
+		 <td>{{ item.bn5 |floatformat:"0"}}</td>
+		 <td>{{ item.bn6 |floatformat:"0"}}</td>
+		 <td>{{ item.bn7 |floatformat:"0"}}</td>
+		 <td>{{ item.bn8 |floatformat:"0"}}</td>
+		 <td>{{ item.bn9 |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/community_home/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

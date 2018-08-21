@@ -1,0 +1,25 @@
+{% extends "real_focus.htm" %}
+
+{% block data %}
+// 指定图表的数据
+var timeData = {{timeData|safe}};
+var data1 = {{icon1_click|safe}};
+var data2 = {{icon2_click|safe}};
+var data3 = {{icon3_click|safe}};
+var data4 = {{icon4_click|safe}};
+var data5 = {{icon5_click|safe}};
+{% include 'real_tem5.htm' %}
+
+{% endblock %}
+{% block config %}
+option.title.text='首页图标点击pv'
+option.series[0].name='icon1'
+option.series[1].name='icon2'
+option.series[2].name='icon3'
+option.series[3].name='icon4'
+option.series[4].name='icon5'
+
+{% endblock  %}
+{% block nav_left %}
+$("#nav-left [href='/push/real_icon/']").parent().addClass('active');
+{% endblock  %}

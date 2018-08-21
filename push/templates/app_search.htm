@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle1 %}
+ <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;app整体<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/app_funnel/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app用户转化</a></li>-->
+<li><a href="/push/app_data/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app数据概览</a></li>
+<li><a href="/push/app_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app活跃</a></li>
+<li><a href="/push/app_login/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app登录用户</a></li>
+<li><a href="/push/app_add/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app新增</a></li>
+<li><a href="/push/app_starts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app启动次数</a></li>
+<li><a href="/push/app_retain/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app留存率</a></li>
+<li><a href="/push/moduleuser/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app模块用户数</a></li>
+<li><a href="/push/app_business/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app商机数</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% block list2 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle2 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseTwo"><span class="glyphicon glyphicon-th-list"></span>&nbsp;头条数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+   </div>
+<div id="collapseTwo" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory2 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/headlines/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条阅读量</a></li>
+<li><a href="/push/app_video/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 视频播放量</a></li>
+<li><a href="/push/headlineseffect/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条运营</a></li>
+<li><a href="/push/headlinesbutton/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条按钮</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+{% block list3 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle3 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseThree"><span class="glyphicon glyphicon-th-list"></span>&nbsp;社区数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+   </div>
+<div id="collapseThree" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory3 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/app_posts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区运营</a></li>
+<li><a href="/push/communityposts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区帖子</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+{% block list4 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle4 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseFour"><span class="glyphicon glyphicon-th-list"></span>&nbsp;选车数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+   </div>
+<div id="collapseFour" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory4 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/carbusiness/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 选车商机按钮</a></li>
+<li><a href="/push/carbutton/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 选车首页按钮</a></li>
+<li><a href="/push/data_compare/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 数据对比(beta)</a></li>
+<li><a href="/push/app_search/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 数据查询(beta)</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+</div>
+</div>
+<!--主题内容-->
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+<form action="/push/app_search/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_year.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">年</label>
+    {{ form.date_year }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_month.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">月</label>
+    {{ form.date_month }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_weekday.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">周</label>
+    {{ form.date_weekday }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input style="height:30px;" type="submit" value="提交" id="submit"></input>
+</div>
+{% endblock %}
+{% block index %}
+{% endblock  %}
+{% block trend %}
+
+{% endblock %}
+{% block data %}
+{% endblock %}
+{% block config %}
+{% endblock  %}
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<div><div style="float: left;"><h4><span class="glyphicon glyphicon-pause"></span>  数据概览</h4></div>
+<div style="float: right"><button class="btn btn-primary" onClick =" $('#customers').tableExport({type:'csv',escape:'false',tableName:'data.csv'});"><span class="glyphicon glyphicon-cloud-download"></span> 导出</button></div>
+<div style="clear: both;"></div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-9">
+<table class="table table-hover table-striped" id="customers">
+{% block tablehead %} 
+<thead>
+<tr>
+<th>日期</th>
+<th>app活跃</th>
+<th>adr活跃</th>
+<th>ios活跃</th>
+<th>app新增</th>
+<th>adr新增</th>
+<th>ios新增</th>
+<th>头条用户</th>
+<th>车友用户</th>
+<th>选车用户</th>
+<th>服务用户</th>
+<tr>
+</thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="all_show">
+{% for item in result %}
+      <tr>
+        <td>{{ item.date }}</td>
+		<td>{{ item.active_app }}</td>
+		<td>{{ item.active_adr }}</td>
+		<td>{{ item.active_ios }}</td>
+		<td>{{ item.new_app }}</td>
+		<td>{{ item.new_adr }}</td>
+		<td>{{ item.new_ios }}</td>
+		<td>{{ item.headline_user }}</td>
+		<td>{{ item.community_user }}</td>
+		<td>{{ item.selectcar_user }}</td>
+		<td>{{ item.service_user }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+</table>
+</div>	
+</div>	
+</div>
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_search/']").parent().addClass('active');
+{% endblock  %}
+
+{% block tag %}
+{% endblock  %}
+</script>
+</div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+{% extends "pie_chart.htm" %}
+{% block directory %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/chart/bar_chart/complex_chart/" target="_top"> 复合图</a></li>
+<li><a href="/chart/bar_chart/cluster_bar_chart/" target="_top"> 条形图</a></li>
+<li><a href="/chart/bar_chart/cluster_line_chart/" target="_top"> 折线图</a></li>
+<li><a href="/chart/bar_chart/cluster_area_chart/" target="_top"> 面积图2</a></li>
+</ul>
+{% endblock %}
+{% block form_action %}
+<form action="/chart/bar_chart/cluster_bar_chart/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+<div class="form-group">
+<p><label for="id_start_date">开始日期:</label> <input id="datepicker" name="start_date" type="text" value="2016-01-01" required class="form-control"/></p>
+</div>
+<div class="form-group">
+<p><label for="id_end_date">截止日期:</label> <input id="datepicker1" name="end_date" type="text" value="2016-03-31" required class="form-control"/></p>
+</div>
+{% endblock %}
+
+{% block data %}
+
+		var xAxisData = {{xAxisData|safe}};
+		var data1 = {{data1|safe}};
+		var data2 = {{data2|safe}};
+		var data3 = {{data3|safe}};
+        // 指定图表的配置项和数据
+        {% include 'cluster_bar_tem.htm' %}
+
+{% endblock %}
+
+{% block config %}
+option.dataZoom=[{type: 'slider', 
+				  start: 10,      
+				  end: 60 },
+				 {type:'inside', 
+				  start: 10,     
+                  end: 60}]
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/chart/bar_chart/complex_chart/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/chart/bar_chart/cluster_bar_chart/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

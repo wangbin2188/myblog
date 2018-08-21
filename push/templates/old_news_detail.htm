@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle1 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;实时数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/news_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条要闻API</a></li>
+<li><a href="/push/news_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 新闻实时阅读</a></li>
+<li><a href="/push/posts_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 帖子实时点击</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% block list2 %}
+
+{% endblock %}
+{% block list3 %}
+
+{% endblock %}
+{% block list4 %}
+
+{% endblock %}
+</div>
+</div>
+<!--主题内容-->
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+{% endblock %}
+{% block submit %}
+{% endblock %}
+
+
+{% block index %}
+{% endblock %}
+{% block trend %}
+{% endblock %}
+<p>&nbsp </p>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div class="panel panel-default">
+<div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+          href="#collapseOne">要闻</a>
+      </h4>
+    </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+<table class="table table-hover table-striped" id="customers">
+
+   <thead>
+      <tr>
+         <th>newsid</th>
+		 <th>title</th>
+		 <th>push_time</th>
+         <th>src</th>
+      </tr>
+   </thead>
+   <tbody id="show">
+   {% for item in result %}
+      <tr>
+         <td><a href="{% url 'news_real2' 'news' item.newsId  %}">{{ item.newsId }}</a></td>
+		 <td>{{ item.title }}</td>
+		 <td>{{ item.publishTime }}</td>
+         <td>{{ item.src }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+<table id="bottomTable" >  
+	<tr align="center">  
+		<td><button type="button" id="first" ><span class="glyphicon glyphicon-backward"></span></button></td> 
+		<td><button type="button" id="back"><span  class="glyphicon glyphicon-chevron-left"></span></button></td>  
+		<td><span id="pageInfo">第1页</span></td>
+		<td><button type="button" id="next"><span  class="glyphicon glyphicon-chevron-right"></span></button></td> 
+	   <td><button type="button" id="last"><span  class="glyphicon glyphicon-forward"></span></button></td>  
+	</tr>  
+</table> 
+</div>
+</div>
+</div>
+
+{% block remark %}
+{% endblock  %}
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/news_detail/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/news_detail/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+{% block tag %}
+{% endblock  %}
+
+{% block shortcut %}
+{% endblock  %}
+</script>
+
+</div>
+</body>
+</html>

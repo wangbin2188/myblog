@@ -1,0 +1,10 @@
+ <h2>Publishers</h2>
+    <ul>
+        {% for publisher in object_list %}
+            <li>
+	    <a href="{% url 'userdetail' publisher.id %}">{{ publisher.username }}</a>
+	    <a href="{% url 'user_update' publisher.id  %}">update</a>
+	    <a href="{% url 'user_delete' publisher.id  %}">delete</a>
+	    </li>
+        {% endfor %}
+    </ul>

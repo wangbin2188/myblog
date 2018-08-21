@@ -1,0 +1,185 @@
+
+option = {
+    title: {
+        text: '焦点图点击pv',
+        subtext: '',
+        x: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+        
+    },
+ 
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    
+    grid: [{
+        
+        right: '5%',
+        left:'8%',
+        height: '14%'
+    }, {
+        
+       right: '5%',
+        left:'8%',
+        top: '26%',
+        height: '14%'
+    },{
+        
+        right: '5%',
+        left:'8%',
+        top: '45%',
+        height: '14%'
+    }, {
+        
+       right: '5%',
+        left:'8%',
+        top: '64%',
+        height: '14%'
+    }, {
+        
+       right: '5%',
+        left:'8%',
+        top: '83%',
+        height: '14%'
+    }],
+    xAxis : [
+        {gridIndex: 0,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+        },
+        {
+            gridIndex: 1,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+            
+        },
+        {
+            gridIndex: 2,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+            
+        },
+        {
+            gridIndex: 3,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+            
+        },
+        {
+            gridIndex: 4,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+            
+        }
+    ],
+    yAxis : [
+        {
+            name : '',
+            type : 'value',
+            nameLocation:'middle',
+            nameRotate:0,
+            nameGap:30
+        
+        },
+        {
+            gridIndex: 1,
+            name : '',
+            type : 'value',
+            nameLocation:'middle',
+            nameRotate:0,
+            nameGap:30
+            
+        },
+        {gridIndex: 2,
+            name : '',
+            type : 'value',
+            nameLocation:'middle',
+            nameRotate:0,
+            nameGap:30
+            
+        },
+        {
+            gridIndex: 3,
+            name : '',
+            type : 'value',
+            nameLocation:'middle',
+            nameRotate:0,
+            nameGap:30
+            
+        },
+        {
+            gridIndex: 4,
+            name : '',
+            type : 'value',
+            nameLocation:'middle',
+            nameRotate:0,
+            nameGap:30
+            
+        }
+    ],
+    series : [
+        {
+            name:'焦点图1',
+            type:'line',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data1
+        },
+        {
+            name:'焦点图2',
+            type:'line',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data2
+        },
+         {
+            name:'焦点图3',
+            type:'line',
+            xAxisIndex: 2,
+            yAxisIndex: 2,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data3
+        },
+        {
+            name:'焦点图4',
+            type:'line',
+            xAxisIndex: 3,
+            yAxisIndex: 3,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data4
+        },
+        {
+            name:'焦点图5',
+            type:'line',
+            xAxisIndex: 4,
+            yAxisIndex: 4,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data5
+        }
+    ]
+};

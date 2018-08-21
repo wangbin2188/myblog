@@ -1,0 +1,7 @@
+<ul>
+{% for cha in chart %}
+<li>
+<a href="{{ cha.get_absolute_url }}"> {{ cha.chart_desc }} </a>
+</li>
+{% endfor %}
+</ul>

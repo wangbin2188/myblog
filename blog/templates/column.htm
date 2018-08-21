@@ -1,0 +1,45 @@
+{% include 'blog_index.htm' %} 
+		<!-- Center Column -->
+<div class="container-fluid">
+
+		<!-- Left Column -->
+		<div class="col-sm-3">
+
+			<!-- List-Group Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title"><span class="glyphicon glyphicon-fire"></span> 栏目 </h1>
+				</div>
+				<div class="list-group">
+				{% for column in column_list %}
+					<a href="/blog/column/{{ column.id }}" class="list-group-item">{{ column.name }} </a>
+				{%  endfor  %}
+				</div>
+			</div>
+				
+		</div>
+		<div class="col-sm-9">		
+			<!-- Articles -->
+			{% for article in column_article_list %}
+			 <div class="row"> 
+				 <article class="col-xs-12"> 
+					 <h2><a id="article_title", href="/blog/{{ article.id }}">{{ article.title }}</a></h2> 
+					 <p>{{ article.content|truncatechars_html:80 | safe }}</p> 
+				 <!-- 	<p><button class="btn btn-default">Read More</button></p>  --> 
+					<p class="pull-right"><span class="label label-default">{{ article.column }}</span>  <span class="label label-default">{{ article.author }}</span></p>
+					 <ul class="list-inline"> 
+						 <li><a href="#">{{ article.pub_date | date:"Y/m/d" }}</a></li> 
+						<li><a href="#"><span class="glyphicon glyphicon-comment"></span> {{ article.comment_num }} 评论</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-star-empty"></span>{{ article.keep_num }} 收藏</a></li>
+					 </ul> 
+				 </article> 
+			 </div>			
+			<hr>
+			{% endfor %}
+
+		</div><!--/Center Column-->
+
+
+</div>
+</body>
+</html>

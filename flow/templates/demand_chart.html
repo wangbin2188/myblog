@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% include 'flow_left.html' %}
+<div class="col-sm-9 col-md-9 col-lg-9" >
+<div id="main" style="width: 950px;height:580px;"></div>
+<script type="text/javascript">
+
+	  $(document).ready(function () {
+            var pagewidth = $(window).width();
+            var pageheight = $(window).height();
+            if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+             
+                $("#main").height(pageheight*0.6);
+                $("#main").width(pagewidth*0.95);
+            }
+            else {
+                $("#main").height("580px");
+                $("#main").width("950px");
+            }
+//下面是加载echarts报表
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+//自适应1：画布宽高
+var label= {{ label | safe}};
+var s_dt= {{ s_dt  | safe}};
+var e_dt= {{ e_dt  | safe}};
+var start_dt=[];
+var end_dt=[];
+for(i=0;i<s_dt.length;i++){
+start_dt.push(new Date(s_dt[i]));
+end_dt.push(new Date(e_dt[i]));
+}
+
+{% include 'gantt_tem.htm' %}
+
+myChart.setOption(option);
+//自适应2：图表
+window.onresize = myChart.resize;
+        });		
+
+</script>
+</div>
+</div>
+</div>
+</body>
+</html>

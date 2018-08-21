@@ -1,0 +1,108 @@
+
+var option = {
+    title: {
+        text: '',
+		left:'center',
+    },
+    legend: {
+        data: ['bar', 'bar2','bar3','bar4','bar5','bar6','bar7','bar8','bar9'],
+        x: 'center',
+    },
+    toolbox: {
+        // y: 'bottom',
+	//	left: 'left',
+        top: 'middle',
+	orient:'vertical',
+        feature: {
+            magicType: {
+                type: ['stack', 'tiled','line','bar']
+            },
+	    restore:{},
+            dataView: {},
+            saveAsImage: {
+                pixelRatio: 2
+            }
+        }
+    },
+	//浮层
+     tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        data: push_date,
+        silent: false,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+    },
+    series: [{
+        name: 'bar',
+        type: 'bar',
+        data: data1,
+        animationDelay: function (idx) {
+            return idx * 10;
+        }
+    }, {
+        name: 'bar2',
+        type: 'bar',
+        data: data2,
+        animationDelay: function (idx) {
+            return idx * 10 + 100;
+        }
+    }, {
+        name: 'bar3',
+        type: 'bar',
+        data: data3,
+        animationDelay: function (idx) {
+            return idx * 10 + 150;
+        }
+    }, {
+        name: 'bar4',
+        type: 'bar',
+        data: data4,
+        animationDelay: function (idx) {
+            return idx * 10 + 200;
+        }
+    }, {
+        name: 'bar5',
+        type: 'bar',
+        data: data5,
+        animationDelay: function (idx) {
+            return idx * 10 + 250;
+        }
+    }, {
+        name: 'bar6',
+        type: 'bar',
+        data: data6,
+        animationDelay: function (idx) {
+            return idx * 10 + 300;
+        }
+    }, {
+        name: 'bar7',
+        type: 'bar',
+        data: data7,
+        animationDelay: function (idx) {
+            return idx * 10 + 350;
+        }
+    }, {
+        name: 'bar8',
+        type: 'bar',
+        data: data8,
+        animationDelay: function (idx) {
+            return idx * 10 + 400;
+        }
+    }, {
+        name: 'bar9',
+        type: 'bar',
+        data: data9,
+        animationDelay: function (idx) {
+            return idx * 10 + 450;
+        }
+    }],
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};

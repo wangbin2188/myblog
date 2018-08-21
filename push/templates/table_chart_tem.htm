@@ -1,0 +1,68 @@
+<!--正常表格模板-->
+
+<div class="panel panel-default">
+<div class="panel-heading">
+      <h4>数据明细</h4>
+   </div>
+<div class="panel-body">
+<table class="table table-hover">
+   <thead>
+      <tr>
+         <th>日期</th>
+         <th>adr_add</th>
+		 <th>ios_add</th>
+      </tr>
+   </thead>
+   <tbody>
+{% for item in result %}
+      <tr>
+         <td>{% ifequal  date_format  'date' %}
+		 {{ item.date}} 
+		 {% else %}
+		 {{ item.week}}  {{ item.month}} 
+		 {% endifequal %}
+		 </td>
+         <td>{{ item.adr_add }}</td>
+		 <td>{{ item.ios_add }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+</div>
+</div>
+
+
+<!--分页模板--
+<table class="table table-hover">
+   <thead>
+      <tr>
+         <th>日期</th>
+         <th>adr_add</th>
+		 <th>ios_add</th>
+      </tr>
+   </thead>
+   <tbody>
+{% for winlog in winloglist.object_list %}
+      <tr>
+         <td>{{ winlog.date  }}</td>
+         <td>{{ winlog.adr_add }}</td>
+		 <td>{{ winlog.ios_add }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+<ul class="pagination">
+{% if winloglist.has_previous %}
+<li><a href="?page={{ winloglist.previous_page_number }}" title="上一页"><span class="glyphicon glyphicon-backward"></span></a></li>
+{% endif %}
+{% for p in winloglist.paginator.page_range %}
+{% ifequal p winloglist.number %}
+<li><span>{{p}}</span></li>
+{% else %}
+<li><a href="?page={{p}}" title="第{{p}}页">{{p}}</a></li>
+{% endifequal %}
+{% endfor %}
+{% if winloglist.has_next %}
+<li><a href="?page={{ winloglist.next_page_number }}" title="下一页"><span class="glyphicon glyphicon-forward"></span></a> </li>
+{% endif %}
+</ul>-->

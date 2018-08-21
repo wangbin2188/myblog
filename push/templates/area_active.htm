@@ -1,0 +1,40 @@
+{% extends "push_open.htm" %}
+{% block form_action %}
+<form action="/push/area_active/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+<div class="form-group">
+    {{ form.create_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.create_date.id_for_label }}">日期</label>
+    {{ form.create_date }}</p>
+</div>
+{% endblock %}
+
+{% block data %}
+var data3={{data3|safe}}
+
+// 指定图表的配置项和数据
+{% include 'push_map_tem.htm' %}
+option.series[0].data=data3
+
+{% endblock %}
+
+{% block config %}
+{% endblock %}
+{% block remark %}
+<p>从区域来看，广东、江苏和浙江的用户是push点击的主力人群，推测这跟这几个省份的人口和经济发展水平有相当大的关系</p>
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/area_active/']").parent().addClass('active');
+
+{% endblock  %}
+
+
+
+
+
+
+
+

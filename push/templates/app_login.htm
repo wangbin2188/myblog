@@ -1,0 +1,69 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/app_login/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block t1 %}
+<h4>APP登录用户</h4>
+{% endblock  %}
+{% block t2 %}
+<h4>ADR登录用户</h4>
+{% endblock  %}
+{% block t3 %}
+<h4>IOS登录用户</h4>
+{% endblock  %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var adr_rate = {{adr_login|safe}};
+		var ios_rate = {{ios_login|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[0].name='adr登录用户'
+option.series[1].name='ios登录用户'
+
+option.legend.data=['adr登录用户','ios登录用户']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td>{% ifequal  date_format  'date' %}
+		 {{ item.date}} 
+		 {% else %}
+		 {{ item.week}}  {{ item.month}} 
+		 {% endifequal %}
+		 </td>
+         <td>{{ item.adr_login |floatformat:"0"}}</td>
+		 <td>{{ item.ios_login |floatformat:"0"}}</td>
+		 <td>{{ item.adr_login|add:item.ios_login |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_login/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+{% include 'blog_index.htm' %} 
+<div class="container-fluid">
+
+		<!-- Left Column -->
+		<div class="col-sm-3">
+
+			<!-- List-Group Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title"><span class="glyphicon glyphicon-fire"></span> 栏目 </h1>
+				</div>
+				<div class="list-group">
+				{% for column in column_list %}
+					<a href="/blog/column/{{ column.id }}" class="list-group-item">{{ column.name }} </a>
+				{%  endfor  %}
+				</div>
+			</div>
+				
+		</div>		
+		<div class="col-sm-9">		
+			<!-- Article -->
+			<div class="row">
+				<article class="col-xs-12">
+					<h2>{{ article.title }}</h2>
+					<p class="pull-right"><span class="label label-default">{{ article.column }}</span> <span class="label label-default">{{ article.pub_date | date:"j M" }}</span> <span class="label label-default">{{ article.author }}</span></p>
+					<p><hr></p>
+					<p>{{ article.content |truncatechars_html:1000 | safe }}</p>					
+					<p></p>
+					<ul class="list-inline">
+
+						<li><a href=" "><span class="glyphicon glyphicon-comment"></span> {{ article.comment_num }} 评论</a></li>
+						<li><a href="/blog/{{ article.id }}/keep/"><span class="glyphicon glyphicon-star-empty"></span>{{ article.keep_num }} 收藏</a></li>
+						<li><a href="/blog/{{ article.id }}/poll/"><span class="glyphicon glyphicon-thumbs-up"></span>{{ article.poll_num }} 点赞</a></li>
+					</ul>
+				</article>
+			</div>			
+			<hr>
+			
+			<!-- Comments -->
+			<h4>大家说:</h4>
+			<hr>
+			{% for comment in comments %}
+			<div class="row">
+				
+				<article class="col-xs-12">
+
+					<p class="pull-right">  <span class="label label-default">{{ comment.user }}</span></p>
+
+					<p>{{ comment.content }}</p>
+				<!-- 	<p><button class="btn btn-default">Read More</button></p>  -->
+					
+					<ul class="list-inline">
+						<li><a href=" ">{{ comment.pub_date | date:"Y/m/d" }}</a></li>
+						<!--<li><a href=" "><span class="glyphicon glyphicon-comment"></span> {{ comment.comment_num }} 评论</a></li>-->
+						<!--<li><a href=" "><span class="glyphicon glyphicon-thumbs-up"></span>{{ comment.poll_num }} 点赞</a></li>-->
+					</ul>
+				</article>
+			</div>			
+			<hr>
+			{% endfor %}
+			<!-- CommentForm   -->
+			<div class="row">
+				<article class="col-xs-12">
+					<h4>我要反馈:</h4>
+					<form action="/blog/{{ article.id }}/comment/" method="post">
+						{% csrf_token %}
+						{{ commentform.as_p }}
+						<input class="btn btn-default" type="submit" value="提交" />
+					</form>
+				</article>
+			</div>			
+			<hr>
+		</div><!--/Center Column-->
+
+
+	  
+
+	
+
+</div>	
+</body>
+
+</html>

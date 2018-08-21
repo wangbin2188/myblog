@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+{% block nav %}
+{% endblock  %}
+
+<form action="{{request.path_info}}" method='post' class="form-inline" role="form" id="action" name='form'>
+{% csrf_token %}
+{{ form.non_field_errors }}
+{{ form }}
+<input type="submit" value="提交" id="submit"></input>
+</form>
+</body>
+</html>

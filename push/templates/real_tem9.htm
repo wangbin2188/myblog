@@ -1,0 +1,299 @@
+option = {
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    title: {
+        text: '',
+        subtext: '',
+        x: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    
+    
+    grid: [{show:true,
+         top: '5%',
+        right: '70%',
+        left:'5%',
+        height: '25%'
+    }, {
+        show:true,
+       right: '40%',
+        left:'35%',
+        top: '5%',
+        height: '25%'
+    },{
+        show:true,
+        right: '10%',
+        left:'65%',
+        top: '5%',
+        height: '25%'
+    }, {show:true,
+         top: '35%',
+        right: '70%',
+        left:'5%',
+        height: '25%'
+    }, {
+        show:true,
+       right: '40%',
+        left:'35%',
+        top: '35%',
+        height: '25%'
+    },{
+        show:true,
+        right: '10%',
+        left:'65%',
+        top: '35%',
+        height: '25%'
+    },
+    {show:true,
+         top: '65%',
+        right: '70%',
+        left:'5%',
+        height: '25%'
+    }, {
+        show:true,
+       right: '40%',
+        left:'35%',
+        top: '65%',
+        height: '25%'
+    },{
+        show:true,
+        right: '10%',
+        left:'65%',
+        top: '65%',
+        height: '25%'
+    }],
+    xAxis : [
+        {   gridIndex: 0,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+        },
+        {
+            gridIndex: 1,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData,
+            
+        },
+        {gridIndex: 2,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+        },
+        {
+            gridIndex: 3,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData,
+        },
+        {   gridIndex: 4,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+        },
+        {
+            gridIndex: 5,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData,
+            
+        },
+        {gridIndex: 6,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData
+        },
+        {
+            gridIndex: 7,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData,
+        },
+        {
+            gridIndex: 8,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: timeData,
+        }
+    ],
+    yAxis : [
+        {   gridIndex: 0,
+            name : 'bn1',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+        },
+        {
+            gridIndex: 1,
+            name : 'bn2',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+            
+        },
+         { gridIndex: 2,
+            name : 'bn3',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+        
+        },
+        {
+            gridIndex: 3,
+            name : 'bn4',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+            
+        },
+        {   gridIndex: 4,
+            name : 'bn5',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+        
+        },
+        {
+            gridIndex: 5,
+            name : 'bn6',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+            
+        },
+         { gridIndex: 6,
+            name : 'bn7',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+        
+        },
+        {
+            gridIndex: 7,
+            name : 'bn8',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+            
+        },
+        {
+            gridIndex: 8,
+            name : 'bn9',
+            type : 'value',
+            nameLocation:'end',
+            nameRotate:0,
+            nameGap:10
+            
+        }
+    ],
+    series : [
+        {
+            name:'bn1',
+            type:'line',
+             xAxisIndex: 0,
+            yAxisIndex: 0,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data1
+        },
+        {
+            name:'bn2',
+            type:'line',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data2
+        },
+        {
+            name:'bn3',
+            type:'line',
+             xAxisIndex: 2,
+            yAxisIndex: 2,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data3
+        },
+        {
+            name:'bn4',
+            type:'line',
+            xAxisIndex: 3,
+            yAxisIndex: 3,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data4
+        },
+        {
+            name:'bn5',
+            type:'line',
+             xAxisIndex: 4,
+            yAxisIndex: 4,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data5
+        },
+        {
+            name:'bn6',
+            type:'line',
+            xAxisIndex:5,
+            yAxisIndex: 5,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data6
+        },
+        {
+            name:'bn7',
+            type:'line',
+             xAxisIndex: 6,
+            yAxisIndex:6,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:data7
+        },
+        {
+            name:'bn8',
+            type:'line',
+            xAxisIndex: 7,
+            yAxisIndex: 7,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data8
+        },
+        {
+            name:'bn9',
+            type:'line',
+            xAxisIndex: 8,
+            yAxisIndex: 8,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: data9
+        }
+    ]
+};

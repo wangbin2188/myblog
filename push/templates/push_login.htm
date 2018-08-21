@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+{% block nav %}
+{% endblock  %}
+<div class="container"  style="padding: 260px">
+<div class="row">
+<div class="col-md-3">
+</div>
+<div class="col-md-4">
+<div class="panel panel-default"  style="width:300px; height:280px;">
+
+<div class="panel-body">
+<p>&nbsp</P>
+<form action="" method='post' class="form-inline" role="form" id="action" name='form'>
+{% csrf_token %}
+
+<div class="form-group">
+<p class="input-group"><label class="input-group-addon" for="id_username">账号:</label> 
+<input id="username" name="username" type="text"   class="form-control input-lg" style="width:200px; height:45px;"/></p>
+</div>
+<p></p>
+<div class="form-group">
+<p class="input-group"><label class="input-group-addon" for="id_password">密码:</label> 
+<input id="password" name="password" type="password"   class="form-control  input-lg" style="width:200px; height:45px;"/></p>
+</div>
+<p></p>
+<div class="btn-group" >
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="width:260px; height:45px;" onclick="form.action='/push/push_login/';form.submit();">登录</button>
+</div>
+</form>
+<a href="http://172.20.4.64:8000/push/register/">{{register_msg}}</a>
+<a href="http://172.20.4.64:8000/push/forget_password/">{{forget_msg}}</a>
+{{msg}}
+</div>
+</div>
+</div>
+<div class="col-md-5">
+</div>
+</div>
+</div>
+</body>
+</html>

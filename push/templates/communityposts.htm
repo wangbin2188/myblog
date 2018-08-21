@@ -1,0 +1,116 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/communityposts/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block index %}
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<h4><span class="glyphicon glyphicon-pause"></span>  指标概况</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2" style="border:5px #FFFFFF solid;text-align:center;">
+<p style="font-size:18px;">{% block t1 %}主题帖{% endblock  %}</p>
+<p style="font-family:Arial Black;font-size:28px;">{{ last_day_dict.last_day_topic_posts }}</p>
+<p id="rate">日环比:{{ day_before_dict.day_before_topic_posts }}</p>
+<p id="rate">周同比:{{ week_before_dict.week_before_topic_posts }}</p>
+</div>
+<div class="col-md-2" style="border:5px #FFFFFF solid;text-align:center;">
+<p style="font-size:18px;">{% block t2 %}提问帖{% endblock  %}</p>
+<p style="font-family:Arial Black;font-size:28px;">{{ last_day_dict.last_day_question_posts }}</p>
+<p id="rate">日环比:{{ day_before_dict.day_before_question_posts }}</p>
+<p id="rate">周同比:{{ week_before_dict.week_before_question_posts }}</p>
+</div>
+<div class="col-md-2" style="border:5px #FFFFFF solid;text-align:center;">
+<p style="font-size:18px;">{% block t3 %}投票贴{% endblock  %}</p>
+<p style="font-family:Arial Black;font-size:28px;">{{ last_day_dict.last_day_vote_posts }}</p>
+<p id="rate">日环比:{{ day_before_dict.day_before_vote_posts }}</p>
+<p id="rate">周同比:{{ week_before_dict.week_before_vote_posts }}</p>
+</div>
+<div class="col-md-2" style="border:5px #FFFFFF solid;text-align:center;">
+<p style="font-size:18px;">{% block t4 %}提车作业{% endblock  %}</p>
+<p style="font-family:Arial Black;font-size:28px;">{{ last_day_dict.last_day_bycar_posts }}</p>
+<p id="rate">日环比:{{ day_before_dict.day_before_bycar_posts }}</p>
+<p id="rate">周同比:{{ week_before_dict.week_before_bycar_posts }}</p>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var adr_rate = {{topic_posts|safe}};
+		var ios_rate = {{question_posts|safe}};
+		var ipad_rate = {{vote_posts|safe}};
+		var web_rate = {{bycar_posts|safe}};
+		var other_rate = {{share_posts|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem5.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[3].type='line'
+option.series[4].type='line'
+option.series[0].name='主题帖'
+option.series[1].name='提问帖'
+option.series[2].name='投票贴'
+option.series[3].name='提车作业'
+option.series[4].name='头条分享帖'
+option.legend.data=['主题帖','提问帖','投票贴','提车作业','头条分享帖']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>topic_posts</th>
+		 <th>question_posts</th>
+		 <th>vote_posts</th>
+		 <th>bycar_posts</th>
+		<th>share_posts</th>
+      </tr>
+   </thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td>{% ifequal  date_format  'date' %}
+		 {{ item.date}} 
+		 {% else %}
+		 {{ item.week}}  {{ item.month}} 
+		 {% endifequal %}
+		 </td>
+         <td>{{ item.topic_posts |floatformat:"0"}}</td>
+		 <td>{{ item.question_posts |floatformat:"0"}}</td>
+		 <td>{{ item.vote_posts |floatformat:"0"}}</td>
+		 <td>{{ item.bycar_posts |floatformat:"0"}}</td>
+		 <td>{{ item.share_posts |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/communityposts/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

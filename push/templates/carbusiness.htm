@@ -1,0 +1,79 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/carbusiness/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block index %}
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var adr_rate = {{car_inquiry|safe}};
+		var ios_rate = {{car_credit|safe}};
+		var ipad_rate = {{car_call|safe}};
+		var web_rate = {{replace_click|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem4.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[3].type='line'
+option.series[0].name='询价'
+option.series[1].name='贷款买车'
+option.series[2].name='拨打电话'
+option.series[3].name='置换'
+
+option.legend.data=['询价','贷款买车','拨打电话','置换']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>car_inquiry</th>
+		 <th>car_credit</th>
+		 <th>car_call</th>
+		 <th>replace_click</th>
+      </tr>
+   </thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td>{% ifequal  date_format  'date' %}
+		 {{ item.date}} 
+		 {% else %}
+		 {{ item.week}}  {{ item.month}} 
+		 {% endifequal %}
+		 </td>
+         <td>{{ item.car_inquiry |floatformat:"0"}}</td>
+		 <td>{{ item.car_credit |floatformat:"0"}}</td>
+		 <td>{{ item.car_call |floatformat:"0"}}</td>
+		 <td>{{ item.replace_click| floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/carbusiness/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

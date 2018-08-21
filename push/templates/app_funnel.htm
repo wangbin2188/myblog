@@ -1,0 +1,60 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/app_funnel/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+<div class="form-group">
+    {{ form.create_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.create_date.id_for_label }}">日期</label>
+    {{ form.create_date }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<button type="submit"  id="day_before">前一天</button>
+<button type="submit"  id="day_after">后一天</button>
+</div>
+{% endblock %}
+{% block index %}
+{% endblock  %}
+{% block trend %}
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<h4><span class="glyphicon glyphicon-pause"></span> 用户行为漏斗图</h4>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block data %}
+ // 指定图表的配置项和数据
+ {% include 'funnel_tem.htm' %}
+{% endblock %}
+{% block config %}
+var data= {{data|safe}};
+var percent_data= {{ percent_data|safe }};
+var legend={{ legend|safe }};
+option.legend.data=legend;
+option.series[0].data=data;
+option.series[1].data=percent_data;
+{% endblock  %}
+{% block remark %}  
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_funnel/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

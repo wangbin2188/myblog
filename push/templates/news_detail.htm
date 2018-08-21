@@ -1,0 +1,91 @@
+{% include 'real_left.htm' %}
+<!--主题内容-->
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+{% endblock %}
+{% block submit %}
+{% endblock %}
+
+
+{% block index %}
+{% endblock %}
+{% block trend %}
+{% endblock %}
+<p>&nbsp </p>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div class="panel panel-default">
+<div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+          href="#collapseOne">要闻</a>
+      </h4>
+    </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+<table class="table table-hover table-striped" id="customers">
+
+   <thead>
+      <tr>
+         <th>newsid</th>
+		 <th>title</th>
+		 <th>push_time</th>
+         <th>src</th>
+      </tr>
+   </thead>
+   <tbody id="show">
+   {% for item in result %}
+      <tr>
+         <td><a href="{% url 'news_real2' 'news' item.newsId  %}">{{ item.newsId }}</a></td>
+		 <td>{{ item.title }}</td>
+		 <td>{{ item.publishTime }}</td>
+         <td>{{ item.src }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+<table id="bottomTable" >  
+	<tr align="center">  
+		<td><button type="button" id="first" ><span class="glyphicon glyphicon-backward"></span></button></td> 
+		<td><button type="button" id="back"><span  class="glyphicon glyphicon-chevron-left"></span></button></td>  
+		<td><span id="pageInfo">第1页</span></td>
+		<td><button type="button" id="next"><span  class="glyphicon glyphicon-chevron-right"></span></button></td> 
+	   <td><button type="button" id="last"><span  class="glyphicon glyphicon-forward"></span></button></td>  
+	</tr>  
+</table> 
+</div>
+</div>
+</div>
+
+{% block remark %}
+{% endblock  %}
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/news_detail/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/news_detail/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+{% block tag %}
+{% endblock  %}
+
+{% block shortcut %}
+{% endblock  %}
+</script>
+
+</div>
+</body>
+</html>

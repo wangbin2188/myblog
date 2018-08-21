@@ -1,0 +1,9 @@
+{% include "flow_index.html" %}
+
+<form action="/mall/mall_index/" method="post">
+ {% csrf_token %}
+<input id="search"  type="text" name="search"/>
+<button type="submit" class="btn btn-danger">搜索</button>
+<a href="{% url 'shop_cart'  %}"><span class="glyphicon glyphicon-shopping-cart"></span>我的购物车{{goods}}</a>
+<a href="{% url 'order_list'  %}">我的订单</a>
+</form>

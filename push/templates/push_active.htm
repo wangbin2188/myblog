@@ -1,0 +1,55 @@
+{% extends "push_open.htm" %}
+{% block form_action %}
+<form action="/push/push_active/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+
+{% block data %}
+var xAxisData={{ Axis|safe }}
+var data1={{ list1|safe }}
+var data2={{ list2|safe }}
+var data3={{ list3|safe }}
+var Legend={{ Legend|safe }}
+{% include 'push_complex_tem.htm' %}
+option.legend.data=Legend
+option.series[0].name='push点击'
+option.series[1].name='push点击&首次活跃'
+option.series[2].name='首次活跃比'
+{% endblock %}
+{% block config %}
+  option.yAxis=[
+        {
+            type: 'value',
+            name: '主坐标轴',
+            max: 150000,
+            min: 0
+        },
+        {
+            type: 'value',
+            name: '次坐标轴',
+            max: 50,
+            min: 0,
+			axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ];
+option.series[2].type='line'
+option.series[2].yAxisIndex= 1;
+option.dataZoom=[{type: 'slider', start: 0, end: 100 },{type:'inside',start: 0, end: 100}]
+
+
+{% endblock %}
+{% block remark %}
+<p>近期更改了统计push带来的首次活跃用户的逻辑，严格按照push点击时间和APP启动日期来对比，导致push带来的首次活跃用户比例有所降低</p>
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/push_active/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+

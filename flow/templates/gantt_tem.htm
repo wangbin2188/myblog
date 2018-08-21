@@ -1,0 +1,63 @@
+option = {
+title: {
+    text: '任务甘特图',
+    	left:'center',
+	    },
+    tooltip:{ 
+    axisPointer:{
+    show: true,
+    type : 'cross',
+    lineStyle: {
+    type : 'dashed',
+    width : 1
+    }
+    }},
+   toolbox:{
+   top:'middle',
+   orient:'vertical',
+   feature:{
+   restore:{},
+   dataView:{},
+   saveAsImage:{
+   pixelRatio:2
+   }
+   }
+   },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'time'
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            data : label
+        }
+    ],
+    series : [
+        {
+            type:'bar',
+             stack: '总量',
+             itemStyle: {normal: {opacity: 0},},
+            data:start_dt
+        },
+        {
+            type:'bar',
+            stack: '总量',
+            data:end_dt,
+	    label: {
+	    normal: {
+	    show: true,
+	    formatter:' {b}'
+	    }
+	    },
+        }
+    ]
+};

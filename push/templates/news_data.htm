@@ -1,0 +1,19 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/news_data/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/news_data/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

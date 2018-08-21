@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% include 'flow_left.html' %}
+
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+<form action="" method="post">
+{% csrf_token %}
+<div class="form-group">
+    {{ form.title.errors }}
+    {{ form.title.label_tag }}
+    {{ form.title }}
+</div>
+<div id="div1"></div>
+<div class="form-group">
+    {{ form.remark.errors }}
+   {{ form.remark }}
+</div>
+<div class="form-group">
+    {{ form.executor.errors }}
+    {{ form.executor.label_tag }}
+    {{ form.executor }}
+</div>
+<div class="form-group">
+    {{ form.start_dt.errors }}
+    {{ form.start_dt.label_tag }}
+    {{ form.start_dt }}
+</div>
+<div class="form-group">
+    {{ form.end_dt.errors }}
+    {{ form.end_dt.label_tag }}
+    {{ form.end_dt }}
+</div>
+<input type="submit" value="新建" />
+</form>
+<script type="text/javascript">
+var E = window.wangEditor
+var editor = new E('#div1')
+var $id_remark = $('#id_remark')
+editor.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $id_remark.val(html)
+}
+editor.create()
+// 初始化 textarea 的值
+$id_remark.val(editor.txt.html())
+    </script>
+</div>
+</div>
+</div>
+</body>
+</html>

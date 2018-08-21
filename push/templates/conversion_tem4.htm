@@ -1,0 +1,77 @@
+option = {
+    "title": {
+        "text": "",
+        "subtext": "",
+        x: "40%",
+
+        textStyle: {
+            fontSize: '22'
+        },
+    },
+    "tooltip": {
+        "trigger": "axis"
+    },
+    "grid": {
+        "borderWidth": 0,
+        "top": 10,
+        "bottom": 30
+    },
+     
+    "xAxis": [{
+        "type": "category",
+        "data": xData,
+    }],
+    "yAxis": [{
+        "type": "value"}],
+
+    "series": [
+
+        {
+            "name": "",
+            "type": "bar",
+            "barWidth":"50%",
+            "stack": "总量",
+            "itemStyle": {
+                "normal": {
+                    "label": {
+                        "show": true,
+                        "position": "top",
+                        formatter: function(p) {
+                            return p.value > 0 ? (p.value) : '';
+                        }
+                    }
+                }
+            },
+            "data":yData
+        },
+        {
+            type: 'graph',
+            layout: 'none',
+            symbol:'triangle',
+            symbolRotate:-90,
+            symbolSize: 50,
+            left:'33%',
+            right:'27%',
+            roam: true,
+            label: {
+                normal: {
+                    show: true
+                }
+            },
+            data: [{
+                name: a2b,
+                x: 300,
+                y: 300
+            }, {
+                name: b2c,
+                x: 500,
+                y: 400
+            }, {
+                name: c2d,
+                x: 700,
+                y: 500
+            }]
+
+        }
+    ]
+}

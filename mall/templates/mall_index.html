@@ -1,0 +1,9 @@
+{% include "mall_head.html" %}
+
+
+
+{% for product in product_list %}
+<p>
+<a href="{% url 'product_detail' product.id %}">{{product.product_name}}</a>
+</p>
+{% endfor %}

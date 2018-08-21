@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% include 'real_left.htm' %}
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+<h2>一、模块数据</h2>
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th>日期</th><th>头条用户</th><th>社区用户</th><th>选车用户</th><th>服务用户</th><th>我的用户</th></tr>
+</thead>
+{% for item in server_module %}
+<tr>
+<td>{{item.dt }}</td>
+<td>{{item.headline_uv }}</td>
+<td>{{item.community_uv}}</td>
+<td>{{item.car_uv}}</td>
+<td>{{item.service_uv }}</td>
+<td>{{item.my_uv }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>二、模块使用时长</h2>
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th>日期</th><th>头条使用时长(单位:s)</th><th>社区使用时长(单位:s)</th><th>选车使用时长(单位:s)</th><th>服务使用时长(单位:s)</th><th>我的使用时长(单位:s)</th></tr>
+</thead>
+{% for item in appstay %}
+<tr>
+<td>{{item.dt }}</td>
+<td>{{item.TabTouTiao |floatformat:"0" }}</td>
+<td>{{item.TabCheYou  |floatformat:"0"}}</td>
+<td>{{item.TabXuanChe |floatformat:"0"}}</td>
+<td>{{item.TabHuoDong |floatformat:"0" }}</td>
+<td>{{item.TabWoDe    |floatformat:"0"}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>三、头条数据</h2>
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th>日期</th><th>新闻pv</th><th>新闻uv</th><th>要闻pv</th><th>要闻uv</th>
+<th>自媒体pv</th><th>自媒体uv</th><th>图集pv</th><th>图集uv</th>
+<th>视频pv</th><th>视频uv</th><th>直播pv</th><th>直播uv</th></tr>
+</thead>
+{% for item in server_headline %}
+<tr>
+<td>{{ item.dt }}</td>
+<td>{{ item.newsall_pv}}</td>
+<td>{{ item.newsall_uv }}</td>
+<td>{{ item.news_pv  }}</td>
+<td>{{ item.news_uv  }}</td>
+<td>{{ item.media_pv  }}</td>
+<td>{{ item.media_uv  }}</td>
+<td>{{ item.album_pv  }}</td>
+<td>{{ item.album_uv  }}</td>
+<td>{{ item.video_pv  }}</td>
+<td>{{ item.video_uv }}</td>
+<td>{{ item.live_pv }}</td>
+<td>{{ item.live_uv }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>四、选车数据</h2>
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th>日期</th><th>选车整体pv</th><th>选车整体uv</th><th>车型综述页pv</th><th>车型综述页uv</th>
+<th>车款页pv</th><th>车款页uv</th><th>车型图库pv</th><th>车型图库uv</th><th>口碑详情页pv</th><th>口碑详情页uv</th></tr>
+</thead>
+{% for item in server_car %}
+<tr>
+<td>{{item.dt }}</td>
+<td>{{item.carall_pv }}</td>
+<td>{{item.carall_uv }}</td>
+<td>{{item.carmodel_pv }}</td>
+<td>{{item.carmodel_uv }}</td>
+<td>{{item.carstyle_pv }}</td>
+<td>{{item.carstyle_uv }}</td>
+<td>{{item.caralbum_pv }}</td>
+<td>{{item.caralbum_uv }}</td>
+<td>{{item.evaluation_pv }}</td>
+<td>{{item.evaluation_uv }}</td>
+</tr>
+{% endfor %}
+</table>
+<hr>
+
+<h2>五、商机数据</h2>
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr>
+<th>日期</th><th>商机点击pv</th><th>商机提交pv</th><th>易湃商机点击pv</th><th>易湃商机提交pv</th><th>IM曝光pv</th><th>IM点击pv</th>
+</tr>
+</thead>
+{% for item in server_business %}
+<tr>
+<td>{{item.dt }}</td>
+<td>{{item.business_uv }}</td>
+<td>{{item.business_submit}}</td>
+<td>{{item.yipai_uv}}</td>
+<td>{{item.yipai_submit}}</td>
+<td>{{item.im_view}}</td>
+<td>{{item.im_click }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>

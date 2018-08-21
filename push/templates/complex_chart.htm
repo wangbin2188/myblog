@@ -1,0 +1,33 @@
+{% extends  "cluster_bar_chart.htm" %}
+{% block form_action %}	
+	<form action="/chart/bar_chart/complex_chart/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block config %}
+  option.yAxis=[
+        {
+            type: 'value',
+            name: '主坐标轴',
+            max: 100,
+            min: 0
+        },
+        {
+            type: 'value',
+            name: '次坐标轴',
+            max: 100,
+            min: 0
+        }
+    ];
+option.series[2].type='line'
+option.series[2].yAxisIndex= 1;
+option.dataZoom=[{type: 'slider', 
+				  start: 10,      
+				  end: 60 },
+				 {type:'inside', 
+				  start: 10,     
+                  end: 60}];
+
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/chart/bar_chart/complex_chart/']").parent().addClass('active');
+{% endblock  %}

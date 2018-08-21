@@ -1,0 +1,115 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/headlines_section/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+{% endblock %}
+
+{% block index %}
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var data1 = {{yaowen|safe}};
+		var data2 = {{shuoche|safe}};
+		var data3 = {{photo|safe}};
+		var data4 = {{shipin|safe}};
+		var data5 = {{newcar|safe}};
+		var data6 = {{pingce|safe}};
+		var data7 = {{daogou|safe}};
+		var data8 = {{diandong|safe}};
+		var data9 = {{yongche|safe}};	
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem9.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[3].type='line'
+option.series[4].type='line'
+option.series[5].type='line'
+option.series[6].type='line'
+option.series[7].type='line'
+option.series[8].type='line'
+
+option.series[0].name='要闻'
+option.series[1].name='说车'
+option.series[2].name='图片'
+option.series[3].name='视频'
+option.series[4].name='新车'
+option.series[5].name='评测'
+option.series[6].name='导购'
+option.series[7].name='电动'
+option.series[8].name='用车'
+option.legend.data=['要闻','说车','图片','视频','新车','评测','导购','电动','用车']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>yaowen</th>
+		 <th>shuoche</th>
+		 <th>photo</th>
+		 <th>shipin</th>
+		 <th>newcar</th>
+		 <th>pingce</th>
+		 <th>daogou</th>
+		 <th>diandong</th>
+		 <th>yongche</th>
+      </tr>
+   </thead>
+{% endblock  %}
+ {% block tablebody %}  
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td> {{ item.date}} </td>
+         <td>{{ item.yaowen |floatformat:"0" }}</td>
+		 <td>{{ item.shuoche |floatformat:"0"}}</td>
+		 <td>{{ item.photo |floatformat:"0"}}</td>
+		 <td>{{ item.shipin |floatformat:"0"}}</td>
+		 <td>{{ item.newcar |floatformat:"0"}}</td>
+		 <td>{{ item.pingce |floatformat:"0"}}</td>
+		 <td>{{ item.daogou |floatformat:"0"}}</td>
+		 <td>{{ item.diandong |floatformat:"0"}}</td>
+		 <td>{{ item.yongche |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/headlines_section/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

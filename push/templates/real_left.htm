@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;运营日报<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+</div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/app_operate/" target="_top"><span class="glyphicon glyphicon-th"></span>&nbsp运营基础数据</a></li>
+<li><a href="/push/app_modules/" target="_top"><span class="glyphicon glyphicon-th"></span>&nbsp 运营模块数据</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseSecond"><span class="glyphicon glyphicon-th-list"></span>&nbsp;实时数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+</div>
+<div id="collapseSecond" class="panel-collapse collapse in">
+<div class="panel-body">
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/news_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条要闻API</a></li>
+<li><a href="/push/news_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 新闻实时阅读</a></li>
+<li><a href="/push/posts_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 帖子实时点击</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+$("#nav-top [href='/push/app_operate/']").parent().addClass('active');
+$("#nav-left [href='{{request.path_info}}']").parent().addClass('active');
+</script>

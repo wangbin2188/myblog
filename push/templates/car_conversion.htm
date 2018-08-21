@@ -1,0 +1,105 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/car_conversion/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_format.errors }}
+   <p class="input-group"> 
+    {{ form.date_format }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<button type="submit"  id="7day">近7天</button>
+<button type="submit"  id="30day">30天</button>
+<button type="submit"  id="90day">90天</button>
+</div>
+{% endblock %}
+
+{% block index %}
+{% endblock %}
+
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var data1 = {{a2b|safe}};
+		var data2 = {{b2c|safe}};
+		var data3 = {{c2d|safe}};
+		var data4=[];
+		var data5=[];
+		var data6=[];
+		var data7=[];
+		var data8=[];
+		var data9=[];
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem9.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+temp_list=['选车tab->车型综述页','车型综述页->车款报价页','车款报价页->经销商详情页'];
+for(i=0;i<temp_list.length;i++){
+option.series[i].name=temp_list[i];
+option.series[i].type='line';
+}
+option.legend.data=temp_list;
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>car_tab</th>
+		 <th>car_summary</th>
+		 <th>car_detail</th>
+		 <th>agents_detail</th>
+		 <th>agents_inquiry</th>
+      </tr>
+   </thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td> {{ item.date}}</td>
+         <td>{{ item.car_tab |floatformat:"0"}}</td>
+		 <td>{{ item.car_summary |floatformat:"0"}}</td>
+		 <td>{{ item.car_detail |floatformat:"0"}}</td>
+		 <td>{{ item.agents_detail |floatformat:"0"}}</td>
+		 <td>{{ item.agents_inquiry |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/car_conversion/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

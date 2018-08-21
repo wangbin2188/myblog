@@ -1,0 +1,19 @@
+{% extends "pie_chart.htm" %}
+{% block form_action %}
+<form action="/chart/simple_chart/bar_chart/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block data %}
+{% include 'bar_tem.htm' %}
+
+		option.xAxis[0].data=[]
+		option.series[0].data=[]
+		var Dict={{ Dict|safe }};
+		for(i in Dict) {
+			option.xAxis[0].data.push(Dict[i].name);
+			option.series[0].data.push(Dict[i].value);
+		}
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/chart/simple_chart/bar_chart/']").parent().addClass('active');
+{% endblock  %}

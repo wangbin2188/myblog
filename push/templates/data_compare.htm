@@ -1,0 +1,144 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/data_compare/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_format.errors }}
+   <p class="input-group"> 
+    {{ form.date_format }}</p>
+</div>
+<div class="form-group">
+    {{ form.field1.errors }}
+   <p class="input-group"> 
+    {{ form.field1 }}</p>
+</div>
+<div class="form-group">
+    {{ form.field2.errors }}
+   <p class="input-group"><button type="button" id="transfer" class="btn btn-default btn-xs" style="border-style:none;"><span class="glyphicon glyphicon-transfer"></span></button>
+    {{ form.field2 }}</p>
+</div>
+<p>
+{% for radio in form.field3 %}
+<div class="form-group">
+    {{ radio }}
+</div>
+{% endfor %}
+</p>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<button type="submit"  id="7day">近7天</button>
+<button type="submit"  id="30day">30天</button>
+<button type="submit"  id="90day">90天</button>
+
+</div>
+{% endblock %}
+
+{% block index %}
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<h4><span class="glyphicon glyphicon-pause"></span> 指标检验结果</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2" style="text-align:center;">
+<p style="font-weight:bold;">{{ table_head.name }}</p>
+<p>{{ t_test.name }}</p>
+<p>{{ anova.name }}</p>
+<p>{{ corretion.name }}</p>
+</div>
+<div class="col-md-2" style="text-align:center;">
+<p style="font-weight:bold;">{{ table_head.value }}</p>
+<p>{{ t_test.value }}</p>
+<p>{{ anova.value }}</p>
+<p>{{ corretion.value }}</p>
+</div>
+<div class="col-md-2" style="text-align:center;">
+<p style="font-weight:bold;">{{ table_head.result }}</p>
+<p>{{ t_test.result }}</p>
+<p>{{ anova.result }}</p>
+<p>{{ corretion.result }}</p>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var adr_rate = {{index1|safe}};
+		var ios_rate = {{index2|safe}};
+		var ipad_rate = {{rate|safe}};
+
+		
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem3.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='bar'
+option.series[1].type='bar'
+option.series[2].type='line'
+
+
+option.series[0].name='{{ legend.field1 }}'
+option.series[1].name='{{ legend.field2 }}'
+option.series[2].name='比率'
+
+option.legend.data=['{{ legend.field1 }}','{{ legend.field2 }}','比率']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+  option.yAxis=[
+        {
+            type: 'value',
+            name: '主坐标轴',
+            max: 'dataMax',
+            min: 0
+        },
+        {
+            type: 'value',
+            name: '次坐标轴',
+            max: 'dataMax',
+            min: 0,
+			axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ];
+option.series[2].yAxisIndex= 1;
+{% endblock  %}
+{% block remark %}
+ 
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/data_compare/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

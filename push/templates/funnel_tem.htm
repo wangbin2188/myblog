@@ -1,0 +1,78 @@
+option = {
+    title: {
+        text: '',
+        subtext: ''
+    },
+    tooltip: {
+        trigger: 'item',
+      //  formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+		left: 'left',
+        top: 'top',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    legend: {
+        data: []
+    },
+    series: [
+        {
+            name: '绝对值',
+            type: 'funnel',
+            left: '10%',
+            width: '80%',
+            label: {
+                normal: {
+                    formatter: '{b}: {c}'
+                },
+                emphasis: {
+                    position:'inside',
+                    formatter: '{b}绝对值: {c}'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            itemStyle: {
+                normal: {
+                    opacity: 1.0
+                }
+            },
+            data: []
+        },
+        {
+            name: '转化率',
+            type: 'funnel',
+            left: '10%',
+            width: '80%',
+            maxSize: '100%',
+            label: {
+                normal: {
+                    position: 'inside',
+                    formatter: '{c}%',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                emphasis: {
+                    position:'inside',
+                    formatter: '{b}转化率: {c}%'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    opacity: 0.1,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }
+            },
+            data: []
+        }
+    ]
+};

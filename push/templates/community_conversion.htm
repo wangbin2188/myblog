@@ -1,0 +1,105 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/community_conversion/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.show_format.errors }}
+   <p class="input-group"> 
+    {{ form.show_format }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<button type="submit"  id="7day">近7天</button>
+<button type="submit"  id="30day">30天</button>
+<button type="submit"  id="90day">90天</button>
+</div>
+{% endblock %}
+
+{% block index %}
+{% endblock %}
+
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var adr_rate = {{a2b|safe}};
+		var ios_rate = {{b2c|safe}};
+		var ipad_rate = {{c2d|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem3.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[0].name='社区tab->发帖按钮'
+option.series[1].name='发帖按钮->具体按钮'
+option.series[2].name='具体按钮->帖子发表'
+option.yAxis={type:'value',axisLabel: {formatter: '{value} %'}}
+option.legend.data=['社区tab->发帖按钮','发帖按钮->具体按钮','具体按钮->帖子发表']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>community_tab</th>
+		 <th>=></th>
+		 <th>posts_entry</th>
+		  <th>=></th>
+		 <th>specific_posts_entry</th>
+		  <th>=></th>
+		 <th>posts_publish</th>
+      </tr>
+   </thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td> {{ item.date}}</td>
+         <td>{{ item.community_tab |floatformat:"0"}}</td>
+		 <td>{{ item.A2B }}</td>
+		 <td>{{ item.posts_entry |floatformat:"0"}}</td>
+		  <td>{{ item.B2C}}</td>
+		 <td>{{ item.specific_posts_entry |floatformat:"0"}}</td>
+		  <td>{{ item.C2D}}</td>
+		 <td>{{ item.posts_publish |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/community_conversion/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

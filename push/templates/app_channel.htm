@@ -1,0 +1,112 @@
+{% extends "push_line.htm" %}
+
+{% block form_action %}
+<form action="/push/app_channel/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.ob_format.errors }}
+   <p class="input-group"> 
+    {{ form.ob_format }}</p>
+</div>
+{% endblock %}
+
+{% block index %}
+{% endblock %}
+{% block data %}
+
+		var push_date = {{select_date|safe}};
+		var data1 = {{exact_list|safe}};
+		var data2 = {{c11_list|safe}};
+		var data3 = {{c32_list|safe}};
+		var data4 = {{c37_list|safe}};
+		var data5 = {{c49_list|safe}};
+		var data6 = {{c53_list|safe}};
+		var data7 = {{c7_list|safe}};
+		var data8 = {{c8_list|safe}};
+		var data9 = {{c9_list|safe}};	
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem9.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+temp_list=['ADR精准','360','华为','OPPO','vivo','淘宝','百度','小米','腾讯'];
+for(i=0;i<temp_list.length;i++){
+option.series[i].type='line';
+option.series[i].stack= '总量';
+option.series[i].areaStyle= {normal: {}};
+option.series[i].name=temp_list[i];
+}
+option.legend.data=temp_list
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+		 <th>exact</th>
+         <th>c11</th>
+		 <th>c32</th>
+		 <th>c37</th>
+		 <th>c49</th>
+		 <th>c53</th>
+		 <th>c7</th>
+		 <th>c8</th>
+		 <th>c9</th>
+		 <th>free</th>
+		 <th>ios</th>
+      </tr>
+   </thead>
+{% endblock  %}
+ {% block tablebody %}  
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+         <td> {{ item.date}} </td>
+         <td>{{ item.exact |floatformat:"0" }}</td>
+		 <td>{{ item.c11 |floatformat:"0"}}</td>
+		 <td>{{ item.c32 |floatformat:"0"}}</td>
+		 <td>{{ item.c37 |floatformat:"0"}}</td>
+		 <td>{{ item.c49 |floatformat:"0"}}</td>
+		 <td>{{ item.c53 |floatformat:"0"}}</td>
+		 <td>{{ item.c7 |floatformat:"0"}}</td>
+		 <td>{{ item.c8 |floatformat:"0"}}</td>
+		 <td>{{ item.c9 |floatformat:"0"}}</td>
+		 <td>{{ item.free |floatformat:"0"}}</td>
+		 <td>{{ item.ios |floatformat:"0"}}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_channel/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

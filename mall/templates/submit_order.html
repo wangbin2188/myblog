@@ -1,0 +1,23 @@
+{% include "flow_index.html" %}
+
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th>商品</th><th>单价</th><th>数量</th><th>小计</th></tr>
+</thead>
+{% for product in product_items %}
+<tr>
+<td><a href="{% url 'product_detail' product.product_name.id %}">{{ product.product_name.product_name}}</a></td>
+<td>￥{{ product.product_name.product_price}}</td>
+<td>{{ product.quantity}}</td>
+<td>￥{% widthratio product.product_name.product_price 1 product.quantity%}</td>
+</tr>
+{% endfor %}
+</table>
+<form action="" method="post">
+ {% csrf_token %}
+{{form.as_p}}
+
+<button type="submit" class="btn btn-danger">提交订单</button>
+</form>
+
+{{product_data}}

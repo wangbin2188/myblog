@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="visible-lg">
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle1 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;push周报<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/push_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息打开率</a></li>
+<li><a href="/push/push_send/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息发送和打开</a></li>
+<li><a href="/push/after_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击后续行为</a></li>
+<li><a href="/push/push_click/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击次数分布</a></li>
+<li><a href="/push/push_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push带来的首次活跃</a></li>
+<!--<li><a href="/push/area_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击区域分布</a></li>-->
+<li><a href="/push/push_content/" target="_top"><span class="glyphicon glyphicon-list-alt"></span>&nbsp push点击top|tail消息内容</a></li>
+<li><a href="/push/loss_active/" target="_top"><span class="glyphicon glyphicon-list-alt"></span>&nbsp 潜在流失用户唤醒</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% block list2 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle2 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th-list"></span>&nbsp;头条数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseTwo" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory2 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/push_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息打开率</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+{% block list3 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle3 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-th-list"></span>&nbsp;头条数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseThree" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory3 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/push_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息打开率</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+{% block list4 %}
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle4 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-th-list"></span>&nbsp;头条数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseFour" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory4 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/push_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息打开率</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% endblock %}
+</div>
+</div>
+</div>
+<!--主题内容-->
+
+<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+<form action="/chart/simple_chart/pie_chart/" method='post' class="form-inline" role="form" id="action">
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+<!--{{ form.as_p }}-->
+<div class="form-group">
+<p><label for="id_create_date" >日期:</label> <input id="datepicker" name="create_date" type="text" class="form-control" /></p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group">
+<!--<input type="submit" value="提交"></input>-->
+<button type="submit" class="btn btn-default">提交</button>
+</div>
+{% endblock %}
+</form>
+<div class="visible-lg">
+{% block index %}
+{% endblock %}
+{% block trend %}
+{% endblock %}
+</div>
+<p>&nbsp </p>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 950px;height:580px;"></div>
+
+<script type="text/javascript">
+
+	  $(document).ready(function () {
+            var pagewidth = $(window).width();
+            var pageheight = $(window).height();
+            if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+             
+                $("#main").height(pageheight*0.6);
+                $("#main").width(pagewidth*0.95);
+            }
+            else {
+                $("#main").height("580px");
+                $("#main").width("950px");
+            }
+//下面是加载echarts报表
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+//自适应1：画布宽高
+
+{% block data %}
+// 指定图表的数据
+{% include 'pie_tem.htm' %}
+option.legend.data=[]
+option.series[0].data=[]
+option.series[0].name='流量来源'
+var Dict={{ Dict|safe }};
+for(i in Dict) {
+option.legend.data.push(Dict[i].name);
+option.series[0].data.push({value:Dict[i].value,name:Dict[i].name});
+}
+{% endblock %}
+// 指定图表的配置参数
+{% block config %}
+{% endblock  %}
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+//自适应2：图表
+window.onresize = myChart.resize;
+        });		
+
+</script>
+{% block remark %}
+{% endblock  %}
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/push_open/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/push_open/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+{% block tag %}
+{% endblock  %}
+
+{% block shortcut %}
+{% endblock  %}
+</script>
+
+</div>
+</body>
+</html>

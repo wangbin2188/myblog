@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>头条日报</title>
+</head>
+<body>
+<h1 style="text-align: center">头条日报-{{dt}}</h1>
+
+
+
+<h2>一、重点数据</h2>
+<table border="1">
+<tr><th>指标</th><th>数据</th></tr>
+<tr><td>头条用户数</td><td>{{headline}}</td></tr>
+<tr><td>头条使用时长(s)</td><td>{{headline_stay |floatformat:"1"}}</td></tr>
+</table>
+
+<h2>二、基础数据</h2>
+<table border="1">
+<tr><th>指标</th><th>新增发文数</th><th>新增评论数</th><th>浏览UV</th><th>浏览PV</th></tr>
+<tr><td>要闻</td><td>{{DailyNewsAdd}}</td><td>{{DailyCommentAdd}}</td><td>{{news_uv}}</td><td>{{news_pv}}</td></tr>
+<tr><td>自媒体</td><td>{{NewsCount}}</td><td>{{CommentsCount}}</td><td>{{media_uv}}</td><td>{{media_pv}}</td></tr>
+<tr><td>图集</td><td>——</td><td>——</td><td>{{album_uv}}</td><td>{{album_pv}}</td></tr>
+<tr><td>视频</td><td>——</td><td>——</td><td>{{video_uv}}</td><td>{{video_pv}}</td></tr>
+<tr><td>直播</td><td>{{live_add}}</td><td>{{live_comment}}</td><td>{{live_uv}}</td><td>{{live_pv}}</td></tr>
+</table>
+
+
+</body>
+</html>

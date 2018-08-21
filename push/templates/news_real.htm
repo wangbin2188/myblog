@@ -1,0 +1,71 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/news_real/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始时间</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止时间</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.news_type.errors }}
+   <p class="input-group"> 
+    {{ form.news_type }}</p>
+</div>
+<div class="form-group">
+    {{ form.time_scale.errors }}
+   <p class="input-group"> 
+    {{ form.time_scale }}</p>
+</div>
+<div class="form-group">
+    {{ form.newsid.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">新闻id</label>
+    {{ form.newsid }}</p>
+</div>
+{% endblock %}
+{% block t1 %}APP新增{% endblock  %}
+{% block t2 %}ADR新增{% endblock  %}
+{% block t3 %}IOS新增{% endblock  %}
+
+{% block data %}
+{% endblock %}
+
+{% block config %}
+
+{% endblock  %}
+
+
+
+{% block tablebody %}   
+<p>{{ request.POST.start_date }}<p>
+<p>{{ request.POST.end_date }}<p>
+<p>{{ request.POST.news_type }}<p>
+<p>{{ request.POST.time_scale }}<p>
+<p>{{ request.POST.newsid }}<p>
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_add/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+
+

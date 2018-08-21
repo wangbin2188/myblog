@@ -1,0 +1,20 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/app_pageview/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/app_pageview/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

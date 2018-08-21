@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle1 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;实时数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/real_focus/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 首页焦点图</a></li>-->
+<!--<li><a href="/push/real_icon/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 首页图标</a></li>-->
+<!--<li><a href="/push/real_community/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区首页九宫格</a></li>-->
+<li><a href="/push/news_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条要闻API</a></li>
+<li><a href="/push/news_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 新闻实时阅读</a></li>
+<li><a href="/push/posts_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 帖子实时点击</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% block list2 %}
+
+{% endblock %}
+{% block list3 %}
+
+{% endblock %}
+{% block list4 %}
+
+{% endblock %}
+</div>
+</div>
+<!--主题内容-->
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+<form action="/push/posts_real/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始时间</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止时间</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.posts_type.errors }}
+   <p class="input-group"> 
+    {{ form.posts_type }}</p>
+</div>
+<div class="form-group">
+    {{ form.time_scale.errors }}
+   <p class="input-group"> 
+    {{ form.time_scale }}</p>
+</div>
+<div class="form-group">
+    {{ form.newsid.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">帖子id</label>
+    {{ form.newsid }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+</div>
+{% endblock %}
+
+
+{% block index %}
+{% endblock %}
+{% block trend %}
+{% endblock %}
+<p>&nbsp </p>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 950px;height:580px;"></div>
+<script type="text/javascript">
+var start_date = {{start_date|safe}};
+var end_date   = {{end_date|safe}};
+var posts_type   = {{posts_type|safe}};
+var time_scale = {{time_scale|safe}};
+var newsid     = {{newsid|safe}};
+var idlist     = {{idlist|safe}};
+$("#id_posts_type").val(posts_type);
+$("#id_newsid").val(newsid);
+$("#id_time_scale").val(time_scale);
+function test_gedata(){
+  $.ajax({
+            async: false,
+            url: 'http://appcms.op.bitauto.com/Elasticsearch/GetReadTimeBrowseByids',
+            type: "GET",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: {
+			ids:newsid,
+			type:posts_type,
+			start:start_date,
+			end:end_date,
+			interval:time_scale
+	//		index:'ycapp_static_cheyou*'
+			},
+            timeout: 5000,
+            beforeSend: function () {
+                //jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+            },
+            success: function (json) {//客户端jquery预先定义好的callback函数,成功获取跨域服务器上的json数据后,会动态执行这个callback函数
+               //
+			   test_d(json); 
+            },
+            complete: function (XMLHttpRequest, textStatus) {
+              //  $.unblockUI({ fadeOut: 10 });
+            },
+            error: function (xhr) {
+                //jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+                //请求出错处理
+                alert("请求出错(请检查相关度网络状况.)");
+            }
+        });
+  }
+
+
+function test_d(json){
+
+
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+
+
+var push_date =json.Data.label;
+var data1 =json.Data.data[idlist[0]]
+var data2 = json.Data.data[idlist[1]]
+var data3 = json.Data.data[idlist[2]]
+var data4 =json.Data.data[idlist[3]]
+var data5 = json.Data.data[idlist[4]]
+var data6 = json.Data.data[idlist[5]]
+var data7 =json.Data.data[idlist[6]]
+var data8 = json.Data.data[idlist[7]]
+var data9 = json.Data.data[idlist[8]]
+
+{% include 'push_bar_tem9.htm' %}
+
+
+
+// 指定图表的配置参数
+
+<!--option.series[0].type='line'-->
+option.series[0].name=idlist[0]
+option.series[1].name=idlist[1]
+option.series[2].name=idlist[2]
+option.series[3].name=idlist[3]
+option.series[4].name=idlist[4]
+option.series[5].name=idlist[5]
+option.series[6].name=idlist[6]
+option.series[7].name=idlist[7]
+option.series[8].name=idlist[8]
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.series[3].type='line'
+option.series[4].type='line'
+option.series[5].type='line'
+option.series[6].type='line'
+option.series[7].type='line'
+option.series[8].type='line'
+option.legend.data=idlist
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+}   
+$(function(){
+test_gedata();
+});
+
+{% block data %}
+{% endblock %}
+{% block config %}
+{% endblock  %}
+
+</script>
+{% block remark %}
+{% endblock  %}
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/news_detail/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/posts_real/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+{% block tag %}
+{% endblock  %}
+
+{% block shortcut %}
+{% endblock  %}
+</script>
+
+</div>
+</body>
+</html>

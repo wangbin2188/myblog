@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title></title>
+<link href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet"/>			
+<link href="/static/js/jquery-ui-timepicker-addon.css" rel="stylesheet"/>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js" ></script>	
+<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+<script>
+$(function() {
+$( "#datepicker" ).datepicker({
+dateFormat: "yy-mm-dd",
+showSecond: true, 
+timeFormat: "HH:mm:ss",
+minDate: "-4M",
+maxDate: "-1D",
+//showWeek: true,
+showMonthAfterYear: true,
+numberOfMonths: [ 1, 1 ],
+changeYear: true,
+changeMonth: true
+});
+});
+</script>
+</head>
+<body>
+<form action="" method='post' class="form-inline" role="form" id="form">
+{% csrf_token %}
+{{ form.non_field_errors }}
+{{ form }}
+<button type="submit" class=""  onclick="form.action='/push/daily_start/';form.submit();">发送</button>
+</form>
+</body>
+</html>

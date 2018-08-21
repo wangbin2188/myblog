@@ -1,0 +1,106 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/business/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+
+{% endblock %}
+{% block index %}
+{% endblock %}
+{% block data %}
+
+		var push_date = {{date|safe}};
+		var data1 = {{askprice|safe}};
+		var data2 = {{askpriceok|safe}};
+		var data3 = {{loan|safe}};
+		var data4 = {{loan_ok|safe}};
+		var data5 = {{buynewcar|safe}};
+		var data6 = {{buycar_ok|safe}};
+		var data7 = {{replace|safe}};
+		var data8 = {{replace_ok|safe}};
+		var data9= {{phone|safe}};
+		var data10= {{phone_call|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem10.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!---->
+var tmp=['询底价','询底价成功','贷款','贷款成功','买新车','买新车成功','置换','置换成功','点击400','拨打400'];
+for(i=0;i<=9;i++){
+option.series[i].type='line';
+option.series[i].name=tmp[i];
+}
+
+option.legend.data=tmp
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+
+
+{% block tablehead %} 
+   <thead>
+      <tr>
+         <th>Date</th>
+         <th>askprice</th>
+		 <th>askpriceok</th>
+		<th>loan</th>
+		 <th>loan_ok</th>	 
+		 <th>buycar</th>
+		 <th>buycar_ok</th>
+		 <th>replace</th>
+		 <th>replace_ok</th>
+		 <th>phone</th>
+		 <th>phone_call</th>
+      </tr>
+   </thead>
+{% endblock  %}
+{% block tablebody %}   
+   <tbody id="show">
+{% for item in d_list %}
+      <tr>
+         <td>{{ item.date}}</td>
+         <td>{{ item.askprice }}</td>
+		<td>{{ item.askpriceok }}</td>
+		<td>{{ item.loan }}</td>
+		<td>{{ item.loan_ok }}</td>
+		<td>{{ item.buynewcar }}</td>
+		<td>{{ item.buycar_ok }}</td>
+		<td>{{ item.replace }}</td>
+		<td>{{ item.replace_ok }}</td>
+		<td>{{ item.phone }}</td>
+		<td>{{ item.phone_call }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/business/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

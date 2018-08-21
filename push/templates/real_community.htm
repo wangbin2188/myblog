@@ -1,0 +1,32 @@
+{% extends "real_focus.htm" %}
+
+{% block data %}
+// 指定图表的数据
+var timeData = {{timeData|safe}};
+var data1 = {{bn1|safe}};
+var data2 = {{bn2|safe}};
+var data3 = {{bn3|safe}};
+var data4 = {{bn4|safe}};
+var data5 = {{bn5|safe}};
+var data6 = {{bn6|safe}};
+var data7 = {{bn7|safe}};
+var data8 = {{bn8|safe}};
+var data9 = {{bn9|safe}};
+{% include 'real_tem9.htm' %}
+
+{% endblock %}
+{% block config %}
+option.title.text='社区首页九宫格'
+option.series[0].name='bn1'
+option.series[1].name='bn2'
+option.series[2].name='bn3'
+option.series[3].name='bn4'
+option.series[4].name='bn5'
+option.series[5].name='bn6'
+option.series[6].name='bn7'
+option.series[7].name='bn8'
+option.series[8].name='bn9'
+{% endblock  %}
+{% block nav_left %}
+$("#nav-left [href='/push/real_community/']").parent().addClass('active');
+{% endblock  %}

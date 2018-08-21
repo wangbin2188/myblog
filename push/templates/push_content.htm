@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+       <div class="col-sm-3 col-md-3 col-lg-3" >
+	  <div class="panel panel-primary">
+	<div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span>&nbsp;push周报</h3>
+   </div>
+<div class="panel-body">
+{% block directory %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<li><a href="/push/push_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push消息打开率</a></li>
+<li><a href="/push/after_open/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击后续行为</a></li>
+<li><a href="/push/push_click/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击次数分布</a></li>
+<li><a href="/push/push_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push带来的首次活跃</a></li>
+<!--<li><a href="/push/area_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp push点击区域分布</a></li>-->
+<li><a href="/push/push_content/" target="_top"><span class="glyphicon glyphicon-list-alt"></span>&nbsp push点击top|tail消息内容</a></li>
+<li><a href="/push/loss_active/" target="_top"><span class="glyphicon glyphicon-list-alt"></span>&nbsp 潜在流失用户唤醒</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+<div class="col-sm-9 col-md-9 col-lg-9">
+{% block form_action %}
+<form action="/push/push_content/" method='post' class="form-inline" role="form" id="action">
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+{% endblock %}
+{% block submit %}
+<div class="form-group">
+<!--<input type="submit" value="提交"></input>-->
+<button type="submit" class="btn btn-default">提交</button>
+</div>
+{% endblock %}
+</form>
+<div class="panel panel-default">
+<div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+          href="#collapseOne">push点击top10</a>
+      </h4>
+    </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+<table class="table table-hover table-striped">
+
+   <thead>
+      <tr>
+         <th>平台</th>
+		 <th>推送日期</th>
+		 <th>打开率</th>
+         <th>标题</th>
+		 <th>内容</th>
+      </tr>
+   </thead>
+   <tbody>
+   {% for item in top_content %}
+      <tr>
+         <td>{{ item.platform }}</td>
+		 <td>{{ item.push_date }}</td>
+		 <td>{{ item.rate }}</td>
+         <td>{{ item.title }}</td>
+		 <td>{{ item.content }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+</div>
+</div>
+<!--<hr style="height:1px;border:none;border-top:1px solid #555555;" />-->
+<div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+          href="#collapseTwo">push点击tail10</a>
+      </h4>
+    </div>
+<div id="collapseTwo" class="panel-collapse collapse in">
+      <div class="panel-body">
+<table class="table table-hover table-striped">
+
+   <thead>
+      <tr>
+         <th>平台</th>
+		 <th>推送日期</th>
+		 <th>打开率</th>
+         <th>标题</th>
+		 <th>内容</th>
+      </tr>
+   </thead>
+   <tbody>
+   {% for item in tail_content %}
+      <tr>
+         <td>{{ item.platform }}</td>
+		 <td>{{ item.push_date }}</td>
+		 <td>{{ item.rate }}</td>
+         <td>{{ item.title }}</td>
+		 <td>{{ item.content }}</td>
+      </tr>
+	  {% endfor %}
+   </tbody>
+</table>
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/push_open/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/push_content/']").parent().addClass('active');
+{% endblock  %}
+</script>
+      
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+{% extends  "cluster_bar_chart.htm" %}
+{% block form_action %}	
+	<form action="/chart/bar_chart/cluster_line_chart/" method='post'  class="form-inline" role="form">
+{% endblock %}
+{% block config %}
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[2].type='line'
+option.dataZoom=[{type: 'slider', 
+				  start: 10,      
+				  end: 60 },
+				 {type:'inside', 
+				  start: 10,     
+                  end: 60}]
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/chart/bar_chart/cluster_line_chart/']").parent().addClass('active');
+{% endblock  %}

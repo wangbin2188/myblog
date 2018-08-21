@@ -1,0 +1,60 @@
+{% extends "base_chart.htm" %}
+{% block list2 %}
+{% endblock %}
+{% block list3 %}
+{% endblock %}
+{% block list4 %}
+{% endblock %}
+{% block form_action %}
+<form action="/push/push_open/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+{% endblock %}
+
+{% block data %}
+
+		var push_date = {{push_date|safe}};
+		var adr_rate = {{adr_rate|safe}};
+		var ios_rate = {{ios_rate|safe}};
+        // 指定图表的配置项和数据
+        {% include 'push_bar_tem.htm' %}
+
+{% endblock %}
+
+{% block config %}
+option.series[0].type='line'
+option.series[1].type='line'
+option.series[0].name='ADR'
+option.series[1].name='IOS'
+option.yAxis={type:'value',axisLabel: {formatter: '{value} %'}}
+option.legend.data=['ADR', 'IOS']
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block remark %}
+<p></p>
+{% endblock  %}
+
+
+{% block nav_left %}
+$("#nav-left [href='/push/push_open/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

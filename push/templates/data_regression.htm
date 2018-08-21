@@ -1,0 +1,82 @@
+{% extends "app_active.htm" %}
+
+{% block form_action %}
+<form action="/push/data_regression/" method='post' class="form-inline" role="form">
+{% endblock %}
+{% block form %}
+{{ form.non_field_errors }}
+<div class="form-group">
+    {{ form.start_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.start_date.id_for_label }}">开始日期</label>
+    {{ form.start_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.end_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.end_date.id_for_label }}">截止日期</label>
+    {{ form.end_date }}</p>
+</div>
+<div class="form-group">
+    {{ form.date_format.errors }}
+   <p class="input-group"> 
+    {{ form.date_format }}</p>
+</div>
+<div class="form-group">
+    {{ form.field1.errors }}
+   <p class="input-group"> 
+    {{ form.field1 }}</p>
+</div>
+<div class="form-group">
+    {{ form.field2.errors }}
+   <p class="input-group"><button type="button" id="transfer" class="btn btn-default btn-xs" style="border-style:none;"><span class="glyphicon glyphicon-transfer"></span></button>
+    {{ form.field2 }}</p>
+</div>
+
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<button type="submit"  id="7day">近7天</button>
+<button type="submit"  id="30day">30天</button>
+<button type="submit"  id="90day">90天</button>
+
+</div>
+{% endblock %}
+
+{% block index %}
+
+{% endblock %}
+{% block data %}
+
+var data = {{ data|safe }};
+var formatter_str='{{formatter_str}}';
+var x_min={{ x_min |safe}};
+var x_max={{ x_max |safe}};
+var y_min={{ y_min |safe}};
+var y_max={{ y_max |safe}};
+{% include 'bubble_tem.htm' %}
+
+{% endblock %}
+
+{% block config %}
+
+{% endblock  %}
+{% block remark %}
+ 
+{% endblock  %}
+
+{% block nav_top %}
+$("#nav-top [href='/push/app_data/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+
+$("#nav-left [href='/push/data_regression/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+

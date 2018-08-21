@@ -1,0 +1,48 @@
+{% extends "push_open.htm" %}
+{% block form_action %}
+<form action="/push/after_open/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+{% block form %}
+<div class="form-group">
+    {{ form.create_date.errors }}
+   <p class="input-group"> <label class="input-group-addon" for="{{ form.create_date.id_for_label }}">日期</label>
+    {{ form.create_date }}</p>
+</div>
+{% endblock %}
+
+{% block data %}
+{% include 'push_ring_tem.htm' %}
+		var inner_data={{inner_data|safe}}
+		var outer_data={{outer_data|safe}}
+		var legend_data={{legend_data|safe}}
+		option.series[0].data=inner_data
+		option.series[1].data=outer_data
+		option.legend.data=legend_data
+{% endblock %}
+{% block config %}
+option.toolbox={
+        show: true,
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    }
+{% endblock %}
+{% block remark %}
+<p>80%以上用户点击push消息之后继续浏览了头条，12%左右用户进入了选车页面，其余用户进入了社区。</p>
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/after_open/']").parent().addClass('active');
+{% endblock  %}
+
+
+
+
+
+
+
+
+

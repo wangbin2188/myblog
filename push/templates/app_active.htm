@@ -1,0 +1,211 @@
+{% extends "base_chart.htm" %}
+{% block directorytitle1 %}
+ <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;app整体<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/app_funnel/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app用户转化</a></li>-->
+<!--<li><a href="/push/app_data/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app数据概览</a></li>-->
+<li><a href="/push/app_active/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app活跃(友盟)</a></li>
+<!--<li><a href="/push/app_login/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app登录用户</a></li>-->
+<li><a href="/push/app_add/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app新增(友盟)</a></li>
+<li><a href="/push/app_channel/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app渠道(友盟)</a></li>
+<li><a href="/push/app_stay/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app使用时长(服务端)</a></li>
+<li><a href="/push/app_starts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app启动次数(友盟)</a></li>
+<li><a href="/push/app_retain/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app留存率(友盟)</a></li>
+<li><a href="/push/app_core/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app核心指标(服务端)</a></li>
+<li><a href="/push/app_core2/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app核心指标2(服务端)</a></li>
+<li><a href="/push/app_pageview/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app核心PV(服务端)</a></li>
+<li><a href="/push/business/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app商机数(服务端)</a></li>
+<li><a href="/push/moduleuser/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app模块(友盟)</a></li>
+<li><a href="/push/app_business/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp app商机数(业务线)</a></li>
+</ul>
+{% endblock %}
+{% block directorytitle2 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseTwo"><span class="glyphicon glyphicon-th-list"></span>&nbsp;头条数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+{% block directory2 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/headlines/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条阅读量</a></li>-->
+<!--<li><a href="/push/headline_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 阅读数量(友盟)</a></li>-->
+<li><a href="/push/news_read/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 阅读数量(服务端)</a></li>
+<li><a href="/push/app_video/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 视频播放量(服务端)</a></li>
+<!--<li><a href="/push/headlines_section/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条导航(友盟)</a></li>-->
+<li><a href="/push/news_data/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 新闻详情(服务端)</a></li>
+<!--<li><a href="/push/headlinesbutton/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条按钮</a></li>-->
+</ul>
+{% endblock %}
+{% block directorytitle3 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseThree"><span class="glyphicon glyphicon-th-list"></span>&nbsp;社区数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+{% block directory3 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/app_posts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区运营</a></li>-->
+<!--<li><a href="/push/communityposts/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区帖子</a></li>-->
+<li><a href="/push/posts_app/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp App端发帖(服务端)</a></li>
+<!--<li><a href="/push/community_conver/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 发帖转化率(友盟)</a></li>-->
+<li><a href="/push/post_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区帖子详情(服务端)</a></li>
+<!--<li><a href="/push/community_home/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区导航(友盟)</a></li>-->
+</ul>
+{% endblock %}
+{% block directorytitle4 %}
+      <h4 class="panel-title"><a data-toggle="collapse"  href="#collapseFour"><span class="glyphicon glyphicon-th-list"></span>&nbsp;选车数据 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+</a></h4>
+{% endblock %}
+{% block directory4 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/carbusiness/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 选车商机按钮</a></li>-->
+<li><a href="/push/carbutton/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 选车首页</a></li>
+<li><a href="/push/car_conversion/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 选车转化率(uv)</a></li>
+<!--<li><a href="/push/data_compare/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 数据对比(beta)</a></li>-->
+<!--<li><a href="/push/data_regression/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 数据回归(beta)</a></li>-->
+<!--<li><a href="/push/app_search/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 数据查询(beta)</a></li>-->
+</ul>
+{% endblock %}
+{% block form_action %}
+<form action="/push/app_active/" method='post' class="form-inline" role="form" id="form">
+{% endblock %}
+
+{% block form %}
+{{ form.non_field_errors }}
+{{ form }}
+{% endblock %}
+{% block submit %}
+<div class="form-group btn-group">
+<input type="submit" value="提交" id="submit"></input>
+<div class="visible-lg">
+<button type="submit"  id="7day">近7天</button>
+<button type="submit"  id="30day">30天</button>
+<button type="submit"  id="90day">90天</button>
+</div>
+</div>
+{% endblock %}
+{% block index %}
+
+{% endblock %}
+
+{% block trend %}
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<h4><span class="glyphicon glyphicon-pause"></span> 指标趋势</h4>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block data %}
+
+		var key_list = {{key_list|safe}};
+		var key_list_cn = {{key_list_cn|safe}};
+		var chart_data = {{chart_data|safe}};
+		var date_format = {{date_format|safe}};
+		var push_date=[];
+		var data1=[];
+		var data2=[];
+		var data3=[];
+		var data4=[];
+		var data5=[];
+		var data6=[];
+		var data7=[];
+		var data8=[];
+		var data9=[];
+        // 指定图表的配置项和数据
+       {% include 'push_bar_tem9.htm' %}
+
+{% endblock %}
+
+{% block config %}
+<!--option.series[0].type='line'-->
+option.xAxis.data=chart_data[date_format]
+for(i=0;i<key_list.length;i++){
+option.series[i].type='line';
+option.series[i].name=key_list_cn[i];
+option.series[i].data=chart_data[key_list[i]];
+}
+
+option.legend.data=key_list_cn
+
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+
+{% endblock  %}
+{% block remark %}
+
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-9" style="background-color: #F0F0F0">
+<div><div style="float: left;"><h4><span class="glyphicon glyphicon-pause"></span>  数据明细</h4></div>
+<div style="float: right"><button class="btn btn-primary" onClick =" $('#customers').tableExport({type:'csv',escape:'false',tableName:'data.csv'});"><span class="glyphicon glyphicon-cloud-download"></span> 导出</button></div>
+<div style="clear: both;"></div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-9">
+<table class="table table-hover" id="customers">
+{% block tablehead %} 
+   <thead>
+   {% for item in result %}
+   {% if  forloop.first %}
+         <tr>
+	  {% for key,value in item.items %}
+         <th>{{key}}</th> 
+	  {% endfor %}
+      </tr>
+   {% endif %}
+   {% endfor %}
+   </thead>
+{% endblock  %}
+ {% block tablebody %}  
+   <tbody id="show">
+{% for item in result %}
+      <tr>
+	  {% for key,value in item.items %}
+		 <td>{{ value }}</td>
+	  {% endfor %}
+      </tr>
+{% endfor %}
+   </tbody>
+{% endblock  %}
+</table>
+<table id="bottomTable" >  
+	<tr align="center">  
+		<td><button type="button" id="first" ><span class="glyphicon glyphicon-backward"></span></button></td> 
+		<td><button type="button" id="back"><span  class="glyphicon glyphicon-chevron-left"></span></button></td>  
+		<td><span id="pageInfo">第1页</span></td>
+		<td><button type="button" id="next"><span  class="glyphicon glyphicon-chevron-right"></span></button></td> 
+	   <td><button type="button" id="last"><span  class="glyphicon glyphicon-forward"></span></button></td>  
+	</tr>  
+</table> 
+</div>	
+</div>	
+</div>
+
+{% endblock  %}
+{% block nav_top %}
+$("#nav-top [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/app_active/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+
+{% block tag %}
+$(document).ready(function(){
+  $("p:contains(-)").css("color","red");
+  $("p:contains(-)").append("<b>↓</b>");
+});
+{% endblock  %}
+
+{% block shortcut %}
+
+{% endblock  %}
+
+
+

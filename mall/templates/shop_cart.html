@@ -1,0 +1,32 @@
+{% include "mall_head.html" %}
+
+
+<form action="" method="post">
+ {% csrf_token %}
+<table class="table table-bordered table-hover table-responsive table-striped">
+<thead>
+<tr><th><input id="id_products"  type="checkbox" />全选</th>
+<th>商品</th><th>单价</th><th>数量</th><th>小计</th></tr>
+</thead>
+{% for product in product_list %}
+<tr>
+<td><input id="id_products_{{product.id}}" name="products" type="checkbox" value="{{product.id}}" /></td>
+<td><a href="{% url 'product_detail' product.product_name.id %}">{{ product.product_name.product_name}}</a></td>
+<td>￥{{ product.product_name.product_price}}</td>
+<td>
+<a href="{% url 'shop_quantity_minus' product.product_name.id %}"><span class="glyphicon glyphicon-minus"></span></a>
+&nbsp
+{{ product.quantity}}
+&nbsp
+<a href="{% url 'shop_quantity_plus' product.product_name.id %}"><span class="glyphicon glyphicon-plus"></span></a></td>
+<td>￥{% widthratio product.product_name.product_price 1 product.quantity%}
+<a href="{% url 'shop_cart_remove' product.id %}">移除</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+<!-- <input type="submit" value="去结算" /> -->
+<button type="submit" class="btn btn-danger">去结算</button>
+</form>
+
+{{product_data}}

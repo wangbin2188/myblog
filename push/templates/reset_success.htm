@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+{% block nav %}
+{% endblock  %}
+
+<form action="{{request.path_info}}" method='post' class="form-inline" role="form" id="action" name='form'>
+{% csrf_token %}
+{{ form.non_field_errors }}
+{{ form }}
+<input type="submit" value="提交" id="submit"></input>
+</form>
+{{msg}}
+<a href="http://172.20.4.64:8000/push/app_tem/log_module/">{{url}}</a>
+</body>
+</html>

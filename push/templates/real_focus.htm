@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% include 'index.htm' %}
+   <!--设置负值的margin从而抵消掉padding的影响-->
+<div class="container" style="margin-left: -60px">
+   <div class="row">
+   <!--左侧导航栏-->
+<div class="col-sm-3 col-md-3 col-lg-3" >
+<div class="panel-group" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+{% block directorytitle1 %}
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-th-list"></span>&nbsp;实时数据<span class="pull-right glyphicon glyphicon-chevron-down"></span></a></h4>
+{% endblock %}
+   </div>
+<div id="collapseOne" class="panel-collapse collapse in">
+<div class="panel-body">
+{% block directory1 %}
+<ul class="nav nav-pills nav-stacked" id="nav-left">
+<!--<li><a href="/push/real_focus/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 首页焦点图</a></li>-->
+<!--<li><a href="/push/real_icon/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 首页图标</a></li>-->
+<!--<li><a href="/push/real_community/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 社区首页九宫格</a></li>-->
+<li><a href="/push/news_detail/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 头条要闻API</a></li>
+<li><a href="/push/news_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 新闻实时阅读</a></li>
+<li><a href="/push/posts_real/" target="_top"><span class="glyphicon glyphicon-stats"></span>&nbsp 帖子实时点击</a></li>
+</ul>
+{% endblock %}
+</div>
+</div>
+</div>
+{% block list2 %}
+
+{% endblock %}
+{% block list3 %}
+
+{% endblock %}
+{% block list4 %}
+
+{% endblock %}
+</div>
+</div>
+<!--主题内容-->
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+{% block form_action %}
+{% endblock %}
+{% csrf_token %}
+{% block form %}
+{% endblock %}
+{% block submit %}
+{% endblock %}
+
+
+{% block index %}
+{% endblock %}
+{% block trend %}
+{% endblock %}
+<p>&nbsp </p>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 950px;height:780px;"></div>
+<script type="text/javascript">
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+{% block data %}
+// 指定图表的数据
+var timeData = {{timeData|safe}};
+var data1 = {{focus1_click|safe}};
+var data2 = {{focus2_click|safe}};
+var data3 = {{focus3_click|safe}};
+var data4 = {{focus4_click|safe}};
+var data5 = {{focus5_click|safe}};
+{% include 'real_tem5.htm' %}
+
+{% endblock %}
+// 指定图表的配置参数
+{% block config %}
+{% endblock  %}
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
+{% block remark %}
+{% endblock  %}
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+{% block nav_top %}
+$("#nav-top [href='/push/real_focus/']").parent().addClass('active');
+{% endblock  %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/real_focus/']").parent().addClass('active');
+{% endblock  %}
+
+{% block pagination %}
+{% endblock  %}
+{% block tag %}
+{% endblock  %}
+
+{% block shortcut %}
+{% endblock  %}
+</script>
+
+</div>
+</body>
+</html>

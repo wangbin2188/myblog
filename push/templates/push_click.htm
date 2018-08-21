@@ -1,0 +1,43 @@
+{% extends "push_open.htm" %}
+{% block form_action %}
+<form action="/push/push_click/" method='post' class="form-inline" role="form">
+{% endblock %}
+
+
+
+{% block data %}
+{% include 'push_area_tem.htm' %}
+		option.legend.data=[];
+		option.xAxis[0].data=[];
+		var Legend=  {{ Legend|safe }}; 
+		var Axis  =  {{ Axis|safe }}; 
+		var list1=  {{ list1|safe }};
+		var list2=  {{ list2|safe }};
+		var list3=  {{ list3|safe }};
+		option.legend.data=Legend;
+		option.xAxis[0].data=Axis;
+
+		option.series[0].name='一次';
+		option.series[1].name='两次';
+		option.series[2].name='三次及以上';
+		option.series[0].data=list1;
+		option.series[1].data=list2;
+		option.series[2].data=list3;
+
+{% endblock %}
+{% block config %}
+option.dataZoom=[{type: 'slider',start: 0,end: 100 },{type:'inside',start: 0,end: 100}]
+{% endblock %}
+{% block remark %}
+<p>绝大多数用户一天只点击一次push消息，每天点击3次以上push消息的用户约占总体用户的3%。</p>
+{% endblock %}
+
+{% block nav_left %}
+$("#nav-left [href='/push/push_click/']").parent().addClass('active');
+{% endblock  %}-
+
+
+
+
+
+

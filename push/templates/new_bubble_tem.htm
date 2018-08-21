@@ -1,0 +1,75 @@
+var markLineOpt = {
+    animation: false,
+    label: {
+        normal: {
+            formatter: formatter_str,
+            textStyle: {
+                align: 'right'
+            }
+        }
+    },
+    lineStyle: {
+        normal: {
+            type: 'solid'
+        }
+    },
+    tooltip: {
+        formatter: formatter_str
+    },
+    data: [[{
+        coord: [x_min, y_min],
+        symbol: 'none'
+    }, {
+        coord: [x_max, y_max],
+        symbol: 'none'
+    }]]
+};
+var option = {
+    animation: false,
+    legend: {
+        data: ['scatter']
+    },
+    tooltip: {
+		formatter: poly_str,
+		trigger: 'axis'
+    },
+    xAxis: {
+        type: 'value',
+        min: 'dataMin',
+        max: 'dataMax',
+        splitLine: {
+            show: true
+        }
+    },
+    yAxis: {
+        type: 'value',
+        min: 'dataMin',
+        max: 'dataMax',
+        splitLine: {
+            show: true
+        }
+    },
+    series: [
+        {
+        name: 'scatter',
+        type: 'scatter',
+        itemStyle: {
+            normal: {
+                opacity: 0.8
+                }
+            },
+        symbolSize: function (val) {
+            return val[2] * 40;
+            },
+        data: data,
+		markLine: markLineOpt
+        },
+		{
+		name:'line',
+		type:'line',
+		data:poly_data,
+		showSymbol:false
+		}
+        
+    ]
+}

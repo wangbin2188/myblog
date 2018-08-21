@@ -1,0 +1,31 @@
+ <!DOCTYPE html>
+ {% include 'flow_left.html' %}
+
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+
+<table class="table table-bordered table-hover table-responsive">
+<thead>
+<tr><th>标题</th><th>日期</th><th>发起人</th><th>状态</th><th>负责人</th><th>进度</th><th>操作</th></tr>
+</thead>
+{% for flow in flow_list %}
+<tr>
+<td><a href="{{ flow.get_absolute_url }}">{{flow.title}}</a></td>
+<td>{{flow.create_dt |date:"Y-m-d H:i:s"}}</td>
+<td><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{flow.initiator.first_name}}</td>
+<td>{{flow.state}}</td>
+<td><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;{{flow.executor.first_name}}</td>
+<td><progress value="{{flow.progress}}" max="100"></progress>&nbsp;&nbsp;{{flow.progress}}%</td>
+<td><a href="{% url 'flow_stop' flow.id %}">{{guide2}}</a>&nbsp;
+	<a href="{% url 'demand_update' flow.id %}">{{guide3}}</a>&nbsp;
+	<a href="{% url 'demand_distribute' flow.id %}">{{guide4}}</a>&nbsp;
+	<a href="{% url 'demand_wake' flow.id %}">{{guide5}}</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>数据埋点</title>
+</head>
+<body>
+<h1 style="text-align: center">数据埋点</h1>
+
+
+<h2>一、数据埋点列表</h2>
+<table border="1">
+<tr><th>事件名</th><th>type</th><th>dt</th><th>page</th><th>objecttype</th><th>viewtype</th>
+<th>column</th><th>section</th><th>name</th><th>id</th><th>source</th><th>示例</th><th>备注</th></tr>
+{% for item in loglist %}
+<tr>
+<td>{{ item.type_desc }}</td>
+<td>{{ item.type_name.type_name }}</td>
+<td>{{ item.dt }}</td>
+<td>{{ item.page_name.page_name }}</td>
+<td>{{ item.object_type.object_name }}</td>
+<td>{{ item.view_name.view_name }}</td>
+<td>{{ item.column_name }}</td>
+<td>{{ item.section_name }}</td>
+<td>{{ item.object_name }}</td>
+<td>{{ item.object_id }}</td>
+<td>{{ item.source }}</td>
+<td>{{ item.get_json }}</td>
+<td>{{ item.remark }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+</body>
+</html>

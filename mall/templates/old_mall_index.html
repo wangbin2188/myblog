@@ -1,0 +1,15 @@
+{% include "flow_index.html" %}
+
+
+<form action="" method="post">
+ {% csrf_token %}
+<input id="search"  type="text" name="search"/>
+<button type="submit" class="btn btn-danger">搜索</button>
+<a href="{% url 'shop_cart'  %}"><span class="glyphicon glyphicon-shopping-cart"></a>
+</form>
+
+{% for product in product_list %}
+<p>
+<a href="{% url 'product_detail' product.id %}">{{product.product_name}}</a>
+</p>
+{% endfor %}

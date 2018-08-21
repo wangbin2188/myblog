@@ -1,0 +1,17 @@
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="提交" />
+</form>
+
+<form action="" method="post">
+{% for checkbox in form.products %}
+<p>
+<label for="{{ checkbox.id_for_label }}">
+<span class="checkbox">{{ checkbox.tag }}</span>
+{{ checkbox.choice_label }}
+</label>
+</p>
+{% endfor %}
+<input type="submit" value="提交" />
+</form>

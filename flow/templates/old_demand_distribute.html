@@ -1,0 +1,27 @@
+ <!DOCTYPE html>
+ {% include 'flow_left.html' %}
+
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+<h3>
+{{flow.title}}
+</h3>
+{{flow.remark |safe}}
+<p></p>
+</hr>
+
+{% for flownode in flownode_list %}
+{{flownode.c_dt |date:"Y-m-d H:i:s"}}：{{flownode.operator.first_name}}进行了{{flownode.operate}}操作，将工作指派给{{flownode.executor.first_name}}
+{% endfor %}
+</hr>
+
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="更新" />
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

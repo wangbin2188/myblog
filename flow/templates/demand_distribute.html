@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+ {% include 'flow_left.html' %}
+
+
+<div class="col-sm-9 col-md-9 col-lg-9" >
+<h3  align="center">
+{{flow.title}}
+</h3>
+<p class="pull-right"> <span class="label label-default">创建者：{{flow.initiator.first_name}}</span></p>
+<p></p>
+{{flow.remark |safe}}
+<p></p>
+</hr>
+
+{% for flownode in flownode_list %}
+<p>
+<span class="glyphicon glyphicon-tags"></span>&nbsp;{{flownode.c_dt |date:"Y-m-d H:i:s"}}：<span class="glyphicon glyphicon-user"></span>&nbsp;{{flownode.operator.first_name}}
+
+{% if flownode.operate == 'start' %}
+创建了需求，并将工作指派给&nbsp;{{flownode.executor.first_name}}
+{% elif flownode.operate == 'forward' %}
+转发了需求，将工作转发给&nbsp;{{flownode.executor.first_name}}
+{% elif flownode.operate == 'stop' %}
+取消了需求
+{% elif flownode.operate == 'distribute' %}
+分发了需求，将工作分发给&nbsp;{{flownode.executor.first_name}}
+{% elif flownode.operate == 'completed' %}
+完成了需求
+{% elif flownode.operate == 'wake' %}
+唤醒了需求
+{% elif flownode.operate == 'update' %}
+修改了需求
+{% endif %}
+</p>
+{% endfor %}
+<hr>
+
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="更新" />
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
